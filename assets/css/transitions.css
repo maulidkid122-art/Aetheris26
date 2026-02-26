@@ -1,0 +1,256 @@
+/* ============================================================
+   AETHERIS 26 — PAGE TRANSITIONS
+   Smooth fade-in/fade-out effects for navigation
+   ============================================================ */
+
+/* Page Wrapper Transition */
+body {
+    opacity: 0;
+    transition: opacity 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+body.loaded {
+    opacity: 1;
+}
+
+/* Link Click Fade Out */
+body.fading-out {
+    opacity: 0 !important;
+}
+
+/* Transition Overlay (optional premium effect) */
+.page-transition-overlay {
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(135deg, 
+        rgba(8,14,26,0.98) 0%, 
+        rgba(21,63,124,0.95) 50%, 
+        rgba(8,14,26,0.98) 100%);
+    z-index: 99999;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.page-transition-overlay.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.page-transition-overlay .transition-logo {
+    width: 80px;
+    height: 80px;
+    animation: floatLogo 2s ease-in-out infinite;
+}
+
+@keyframes floatLogo {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
+/* Spinner Effect */
+.page-transition-overlay::after {
+    content: '';
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    border: 2px solid rgba(255,224,101,0.1);
+    border-top-color: rgba(255,224,101,0.8);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* ===== JAVASCRIPT IMPLEMENTATION ===== */
+
+// Add this script to your HTML <head> or before </body>
+
+/*
+<script>
+(function() {
+    'use strict';
+    
+    // Fade in on page load
+    window.addEventListener('load', function() {
+        document.body.classList.add('loaded');
+    });
+    
+    // Immediate fade if JS loads late
+    if (document.readyState === 'complete') {
+        document.body.classList.add('loaded');
+    }
+    
+    // Intercept all internal links for smooth transition
+    document.addEventListener('click', function(e) {
+        const link = e.target.closest('a');
+        
+        if (!link) return;
+        
+        const href = link.getAttribute('href');
+        
+        // Only for internal links (not # anchors, external links, or special links)
+        if (!href || 
+            href.startsWith('#') || 
+            href.startsWith('http') ||
+            link.hasAttribute('download') ||
+            link.getAttribute('target') === '_blank' ||
+            link.onclick) {
+            return;
+        }
+        
+        // Prevent default navigation
+        e.preventDefault();
+        
+        // Start fade out
+        document.body.classList.add('fading-out');
+        
+        // Navigate after fade completes
+        setTimeout(function() {
+            window.location.href = href;
+        }, 400);
+    });
+    
+    // Handle browser back/forward buttons
+    window.addEventListener('pageshow', function(e) {
+        if (e.persisted) {
+            document.body.classList.remove('fading-out');
+            document.body.classList.add('loaded');
+        }
+    });
+})();
+</script>
+*/
+
+/* ===== PREMIUM LOADER ALTERNATIVE ===== */
+/* Use this for a more sophisticated loading screen */
+
+.premium-loader {
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(135deg, #080E1A 0%, #153F7C 100%);
+    z-index: 999999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    opacity: 1;
+    transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+
+.premium-loader.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.premium-loader .loader-emblem {
+    width: 120px;
+    height: 120px;
+    position: relative;
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.premium-loader .loader-emblem img {
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(0 0 30px rgba(255,224,101,0.6));
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.7;
+        transform: scale(1.05);
+    }
+}
+
+.premium-loader .loader-text {
+    font-family: 'Cinzel', serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.3em;
+    color: rgba(255,224,101,0.8);
+    text-transform: uppercase;
+    animation: fadeInOut 2s ease-in-out infinite;
+}
+
+@keyframes fadeInOut {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 1; }
+}
+
+.premium-loader .loader-bar {
+    width: 200px;
+    height: 2px;
+    background: rgba(255,224,101,0.1);
+    border-radius: 2px;
+    overflow: hidden;
+    position: relative;
+}
+
+.premium-loader .loader-bar::after {
+    content: '';
+    position: absolute;
+    left: -50%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(255,224,101,0.8), 
+        transparent);
+    animation: slideBar 1.5s ease-in-out infinite;
+}
+
+@keyframes slideBar {
+    0% { left: -50%; }
+    100% { left: 100%; }
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .premium-loader .loader-emblem {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .premium-loader .loader-text {
+        font-size: 0.7rem;
+    }
+    
+    .premium-loader .loader-bar {
+        width: 150px;
+    }
+}
+
+/* ===== HOW TO USE PREMIUM LOADER ===== */
+/*
+Add this HTML right after <body> tag:
+
+<div class="premium-loader" id="pageLoader">
+    <div class="loader-emblem">
+        <img src="assets/images/logo-aetheris.png" alt="Aetheris 26">
+    </div>
+    <div class="loader-text">Rising Above Horizons</div>
+    <div class="loader-bar"></div>
+</div>
+
+Add this script before </body>:
+
+<script>
+window.addEventListener('load', function() {
+    const loader = document.getElementById('pageLoader');
+    setTimeout(function() {
+        loader.classList.add('hidden');
+    }, 800);
+});
+</script>
+*/

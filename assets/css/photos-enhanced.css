@@ -1,0 +1,290 @@
+/* ============================================================
+   PHOTO ENHANCEMENTS - AETHERIS 26
+   Styling untuk real student photos dengan fallback system
+   ============================================================ */
+
+/* ===== CARD PHOTO STYLING ===== */
+.card-photo {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: 16px;
+    overflow: hidden;
+    background: linear-gradient(135deg, rgba(21,63,124,0.3), rgba(8,14,26,0.8));
+    margin-bottom: 12px;
+}
+
+.card-photo-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                filter 0.4s ease;
+}
+
+/* Hover effect untuk photo */
+.siswa-card:hover .card-photo-img {
+    transform: scale(1.05);
+    filter: brightness(1.1);
+}
+
+/* Loading state untuk lazy images */
+.card-photo-img.lazyload {
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.card-photo-img:not(.lazyload) {
+    opacity: 1;
+}
+
+/* Fallback initials (hidden by default) */
+.card-initials {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cinzel', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+/* Department badge di foto */
+.card-dept-badge {
+    position: absolute;
+    bottom: 8px;
+    left: 8px;
+    font-family: 'Cinzel', serif;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    padding: 4px 10px;
+    border-radius: 6px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 2;
+    transition: transform 0.3s ease;
+}
+
+.siswa-card:hover .card-dept-badge {
+    transform: translateY(-2px);
+}
+
+/* ===== MODAL PHOTO STYLING ===== */
+.modal-photo-wrap {
+    position: relative;
+    flex-shrink: 0;
+}
+
+.modal-photo {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    transition: transform 0.4s ease;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+}
+
+.modal-photo:hover {
+    transform: scale(1.05);
+}
+
+/* Fallback initials di modal (hidden by default) */
+.modal-initials {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+}
+
+/* Department badge di modal */
+.modal-dept-badge {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Cinzel', serif;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    padding: 4px 12px;
+    border-radius: 12px;
+    white-space: nowrap;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+/* ===== PHOTO QUALITY ENHANCEMENTS ===== */
+
+/* Smooth image rendering */
+.card-photo-img,
+.modal-photo {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+}
+
+/* Progressive enhancement for WebP */
+@supports (background-image: url('data:image/webp;base64,UklGRiQAAABXRUJQVlA4IBgAAAAwAQCdASoBAAEAAwA0JaQAA3AA/vuUAAA=')) {
+    .card-photo-img,
+    .modal-photo {
+        image-rendering: auto;
+    }
+}
+
+/* ===== LOADING SHIMMER EFFECT ===== */
+.card-photo::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        90deg,
+        rgba(255,255,255,0) 0%,
+        rgba(255,255,255,0.05) 50%,
+        rgba(255,255,255,0) 100%
+    );
+    animation: shimmer 2s infinite;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.card-photo-img:not(.lazyload) ~ .card-photo::before {
+    display: none;
+}
+
+@keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+/* ===== PHOTO ERROR STATE ===== */
+.card-photo-img[src*="placeholder"],
+.modal-photo[src*="placeholder"] {
+    opacity: 0.6;
+    filter: grayscale(0.3);
+}
+
+/* ===== RESPONSIVE ADJUSTMENTS ===== */
+
+/* Tablet */
+@media (max-width: 768px) {
+    .modal-photo,
+    .modal-initials {
+        width: 110px;
+        height: 110px;
+    }
+    
+    .card-dept-badge {
+        font-size: 0.6rem;
+        padding: 3px 8px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+    .modal-photo,
+    .modal-initials {
+        width: 90px;
+        height: 90px;
+    }
+    
+    .card-photo {
+        border-radius: 12px;
+    }
+    
+    .modal-dept-badge {
+        font-size: 0.6rem;
+        padding: 3px 10px;
+    }
+}
+
+/* ===== HIGH DPI SCREENS (Retina) ===== */
+@media 
+  (-webkit-min-device-pixel-ratio: 2),
+  (min-resolution: 192dpi) {
+    .card-photo-img,
+    .modal-photo {
+        image-rendering: -webkit-optimize-contrast;
+    }
+}
+
+/* ===== DARK MODE PHOTO ADJUSTMENTS ===== */
+@media (prefers-color-scheme: dark) {
+    .card-photo-img,
+    .modal-photo {
+        filter: brightness(0.95) contrast(1.05);
+    }
+    
+    .siswa-card:hover .card-photo-img {
+        filter: brightness(1.05) contrast(1.05);
+    }
+}
+
+/* ===== PRINT STYLES ===== */
+@media print {
+    .card-photo-img,
+    .modal-photo {
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+    }
+}
+
+/* ===== ACCESSIBILITY ===== */
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .card-photo,
+    .modal-photo-wrap {
+        border: 2px solid currentColor;
+    }
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+    .card-photo-img,
+    .modal-photo,
+    .card-dept-badge {
+        transition: none !important;
+        animation: none !important;
+    }
+}
+
+/* Focus styles for keyboard navigation */
+.siswa-card:focus-visible {
+    outline: 3px solid var(--dept-color, #FFE065);
+    outline-offset: 4px;
+}
+
+/* ===== EMPTY STATE STYLING ===== */
+.empty-state {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 80px 24px;
+    color: rgba(232,244,255,0.55);
+}
+
+.empty-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 24px;
+    opacity: 0.4;
+}
+
+.empty-state h3 {
+    font-family: 'Cinzel', serif;
+    font-size: 1.5rem;
+    color: rgba(232,244,255,0.8);
+    margin-bottom: 8px;
+}
+
+.empty-state p {
+    font-size: 0.95rem;
+}
