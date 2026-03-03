@@ -100,7 +100,35 @@
     .dept-TLG { background: rgba(169,227,75,0.12); border-color: rgba(169,227,75,0.3); color: #a9e34b; }
     .dept-TET { background: rgba(255,135,135,0.12); border-color: rgba(255,135,135,0.3); color: #ff8787; }
 
-    @media (max-width: 600px) { .classes-grid { grid-template-columns: 1fr; } }
+
+    /* ===== MOBILE FIXES ===== */
+    @media (max-width: 768px) {
+        /* Hero */
+        .gallery-hero { padding: 110px 0 60px; }
+        .gallery-hero-sub { font-size: 0.9rem; padding: 0 8px; }
+        /* File naming guide */
+        .filename-guide { padding: 18px 20px; }
+        .filename-guide code { font-size: 0.75rem; overflow-x: auto; white-space: nowrap; }
+        /* Classes grid: 2 col on tablet */
+        .classes-grid { grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
+        /* Filter buttons */
+        .dept-filter-row { gap: 8px; margin-bottom: 32px; }
+        .dept-filter-btn { font-size: 0.65rem; padding: 7px 14px; }
+        /* Modal */
+        .modal-gallery-inner { width: 95vw; padding: 20px 16px; }
+        .modal-photos-grid { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 8px; }
+        .container { padding: 0 16px; }
+        .classes-section { padding: 20px 0 60px; }
+    }
+    @media (max-width: 480px) {
+        .classes-grid { grid-template-columns: 1fr; }
+        .class-name { font-size: 1rem; }
+        .class-info { padding: 14px 16px; }
+        .class-photos-grid { aspect-ratio: 16/8; }
+        .modal-photos-grid { grid-template-columns: repeat(3, 1fr); }
+        .section-title { font-size: 1.8rem; }
+    }
+
     </style>
 </head>
 <body>
