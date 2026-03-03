@@ -715,11 +715,35 @@
     .spotify-player { border-radius: 20px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.5); }
 
     /* ===== RESPONSIVE ===== */
+
+    /* ===== MOBILE FIXES ===== */
     @media (max-width: 768px) {
-        .glance-layout, .spotify-layout { grid-template-columns: 1fr; }
-        .glance-visual { order: -1; }
-        .video-deco-1, .video-deco-2 { display: none; }
+        /* Glance cards: 2-col grid stays tidy */
+        .glance-visual { grid-template-columns: 1fr 1fr; gap: 10px; padding: 12px; order: -1; }
+        .glance-card { padding: 18px 12px; }
+        .gc-num { font-size: 1.5rem; }
+        .gc-label { font-size: 0.7rem; }
+        /* Glance text */
+        .glance-lead { font-size: 1.1rem; }
+        .glance-body { font-size: 0.9rem; }
+        .glance-actions { flex-direction: column; gap: 10px; }
+        .glance-actions .btn-primary,
+        .glance-actions .btn-ghost { width: 100%; justify-content: center; }
+        /* Video section */
+        .video-section { padding: 60px 0; }
+        .video-frame { border-radius: 16px; }
+        /* Spotify section */
+        .spotify-section { padding: 60px 0; }
+        .spotify-layout { gap: 36px; }
+        .btn-spotify { width: 100%; justify-content: center; }
     }
+    @media (max-width: 480px) {
+        .glance-section { padding: 60px 0; }
+        .glance-visual { grid-template-columns: 1fr 1fr; gap: 8px; padding: 8px 0; }
+        .glance-card { padding: 16px 10px; border-radius: 14px; }
+        .gc-num { font-size: 1.3rem; }
+    }
+
     </style>
 </body>
 </html>
