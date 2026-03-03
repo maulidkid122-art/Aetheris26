@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Awards & Nominasi — AETHERIS 26</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300;1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/transitions.css">
+    <style>
+    /* ============================================================
+       AWARDS PAGE — AETHERIS 26
+    ============================================================ */
+
+    /* ===== WINNER CAROUSEL ===== */
+    .awards-hero { padding: 140px 0 80px; background: radial-gradient(ellipse at top, rgba(21,63,124,0.5) 0%, transparent 60%), var(--dark); text-align: center; }
+    .awards-hero-badge { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-display); font-size: 0.7rem; letter-spacing: 0.25em; color: var(--gold); border: 1px solid rgba(255,224,101,0.3); padding: 8px 18px; border-radius: 30px; margin-bottom: 24px; }
+    .awards-hero-title { font-family: var(--font-display); font-size: clamp(2.5rem, 6vw, 5rem); font-weight: 900; color: var(--text-main); line-height: 1.1; margin-bottom: 16px; }
+    .awards-hero-title .gold { color: var(--gold); }
+    .awards-hero-sub { color: var(--text-muted); font-size: 1.05rem; max-width: 500px; margin: 0 auto 48px; line-height: 1.7; }
+
+    /* Winner Slider */
+    .winners-slider-wrap { padding: 0 0 80px; overflow: hidden; }
+    .winners-slider-title { text-align: center; margin-bottom: 40px; }
+    .winners-track-outer { overflow: hidden; position: relative; }
+    .winners-track-outer::before, .winners-track-outer::after {
+        content: ''; position: absolute; top: 0; bottom: 0; width: 120px; z-index: 10; pointer-events: none;
+    }
+    .winners-track-outer::before { left: 0; background: linear-gradient(to right, var(--dark), transparent); }
+    .winners-track-outer::after { right: 0; background: linear-gradient(to left, var(--dark), transparent); }
+    .winners-track { display: flex; gap: 20px; animation: slideWinners 60s linear infinite; width: max-content; }
+    .winners-track:hover { animation-play-state: paused; }
+    @keyframes slideWinners { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+    .winner-chip { flex-shrink: 0; background: var(--glass); backdrop-filter: blur(12px); border: 1px solid rgba(255,224,101,0.15); border-radius: 16px; padding: 20px 24px; min-width: 220px; text-align: center; transition: border-color 0.3s; }
+    .winner-chip:hover { border-color: rgba(255,224,101,0.4); }
+    .winner-trophy { width: 28px; height: 28px; margin: 0 auto 10px; color: var(--gold); display: flex; align-items: center; justify-content: center; } .winner-trophy svg { width: 100%; height: 100%; }
+    .winner-category { font-family: var(--font-display); font-size: 0.65rem; letter-spacing: 0.15em; color: var(--gold); margin-bottom: 6px; opacity: 0.8; text-transform: uppercase; }
+    .winner-name { font-family: var(--font-display); font-size: 0.9rem; color: var(--text-main); font-weight: 600; }
+    .winner-jurusan { font-size: 0.75rem; color: var(--text-muted); margin-top: 4px; }
+
+    /* ===== FILTER TABS ===== */
+    .awards-filter { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-bottom: 48px; }
+    .filter-tab { font-family: var(--font-display); font-size: 0.7rem; letter-spacing: 0.1em; padding: 8px 20px; border-radius: 24px; border: 1px solid var(--glass-border); background: var(--glass); color: var(--text-muted); cursor: pointer; transition: all 0.25s; }
+    .filter-tab:hover, .filter-tab.active { background: rgba(255,224,101,0.12); border-color: rgba(255,224,101,0.35); color: var(--gold); }
+
+    /* ===== NOMINATION GRID ===== */
+    .nominations-section { padding: 60px 0 100px; }
+    .nominations-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; }
+    .nomination-card { background: var(--glass); backdrop-filter: blur(16px); border: 1px solid var(--glass-border); border-radius: 24px; overflow: hidden; transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease; cursor: default; }
+    .nomination-card:hover { transform: translateY(-6px); border-color: rgba(255,224,101,0.25); box-shadow: 0 20px 60px rgba(0,0,0,0.35); }
+
+    /* Photo frame */
+    .nom-photo-frame { position: relative; width: 100%; aspect-ratio: 3/4; background: linear-gradient(135deg, rgba(21,63,124,0.4) 0%, rgba(8,14,26,0.9) 100%); overflow: hidden; }
+    .nom-photo-frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .nom-photo-placeholder { width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; }
+    .nom-frame-corner { position: absolute; width: 28px; height: 28px; }
+    .nom-frame-corner.tl { top: 12px; left: 12px; border-top: 2px solid var(--gold); border-left: 2px solid var(--gold); }
+    .nom-frame-corner.tr { top: 12px; right: 12px; border-top: 2px solid var(--gold); border-right: 2px solid var(--gold); }
+    .nom-frame-corner.bl { bottom: 12px; left: 12px; border-bottom: 2px solid var(--gold); border-left: 2px solid var(--gold); }
+    .nom-frame-corner.br { bottom: 12px; right: 12px; border-bottom: 2px solid var(--gold); border-right: 2px solid var(--gold); }
+    .nom-photo-icon { font-size: 3rem; opacity: 0.4; }
+    .nom-photo-hint { font-family: var(--font-display); font-size: 0.6rem; letter-spacing: 0.15em; color: rgba(255,224,101,0.4); text-align: center; padding: 0 20px; }
+    .nom-trophy-badge { position: absolute; top: 12px; right: 12px; width: 36px; height: 36px; background: rgba(255,224,101,0.12); backdrop-filter: blur(8px); border: 1px solid rgba(255,224,101,0.3); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1rem; }
+    .nom-number-badge { position: absolute; bottom: 12px; left: 12px; font-family: var(--font-display); font-size: 0.6rem; letter-spacing: 0.15em; color: var(--gold); background: rgba(8,14,26,0.7); backdrop-filter: blur(8px); padding: 4px 10px; border-radius: 8px; border: 1px solid rgba(255,224,101,0.2); }
+
+    /* Card body */
+    .nom-body { padding: 20px; }
+    .nom-category { font-family: var(--font-display); font-size: 0.6rem; letter-spacing: 0.2em; color: var(--gold); margin-bottom: 6px; opacity: 0.8; }
+    .nom-name { font-family: var(--font-display); font-size: 1rem; font-weight: 700; color: var(--text-main); margin-bottom: 4px; line-height: 1.3; }
+    .nom-jurusan { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 16px; }
+    .nom-vote-btn { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 11px 16px; border-radius: 12px; border: 1px solid rgba(255,100,100,0.3); background: rgba(255,100,100,0.06); color: rgba(255,160,160,0.9); font-family: var(--font-display); font-size: 0.68rem; letter-spacing: 0.1em; text-decoration: none; transition: all 0.25s; }
+    .nom-vote-btn:hover { background: rgba(255,100,100,0.15); border-color: rgba(255,100,100,0.5); color: #fff; }
+    .nom-vote-btn svg { flex-shrink: 0; }
+
+    /* Couple card */
+    .nomination-card.couple .nom-photo-frame { aspect-ratio: 4/3; }
+
+    /* Winner ribbon */
+    .nomination-card.is-winner { border-color: rgba(255,224,101,0.3); }
+    .nomination-card.is-winner .nom-photo-frame::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 60%, rgba(255,224,101,0.08)); }
+    .winner-ribbon { display: inline-flex; align-items: center; gap: 5px; background: rgba(255,224,101,0.12); border: 1px solid rgba(255,224,101,0.3); border-radius: 6px; padding: 3px 10px; font-family: var(--font-display); font-size: 0.6rem; letter-spacing: 0.12em; color: var(--gold); margin-bottom: 6px; }
+
+    /* Section label for group */
+    .nom-group-title { font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.2em; color: var(--sky); margin: 48px 0 20px; padding-bottom: 10px; border-bottom: 1px solid var(--glass-border); text-transform: uppercase; display: flex; align-items: center; gap: 10px; }
+    .nom-group-title::before { content: ''; display: block; width: 24px; height: 1px; background: var(--sky); }
+
+    @media (max-width: 600px) {
+        .nominations-grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+    }
+    </style>
+</head>
+<body>
+
+    <canvas id="starfield" class="starfield"></canvas>
+
+    <!-- NAV -->
+    <nav class="glass-nav" id="mainNav">
+        <div class="nav-inner">
+            <div class="logo">
+                <a href="index.html" class="logo" style="display:flex;align-items:center;gap:10px;text-decoration:none;">
+                    <div class="logo-icon"><img src="assets/images/logo-aetheris.png" alt="" class="logo-img"></div>
+                    <span class="logo-text">AETHERIS<em>26</em></span>
+                </a>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="index.html#philosophy">Philosophy</a>
+                <a href="index.html#departments">Jurusan</a>
+                <a href="awards.html" style="color:var(--gold)">Awards</a>
+                <a href="gallery.html" class="nav-cta">Buku Alumni →</a>
+            </div>
+            <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+        </div>
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="index.html">Home</a>
+            <a href="index.html#departments">Jurusan</a>
+            <a href="awards.html">Awards</a>
+            <a href="yearbook-gallery.html">Galeri Kelas</a>
+            <a href="gallery.html" class="mobile-cta">Buku Alumni →</a>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="awards-hero">
+        <canvas id="starfield" style="position:absolute;top:0;left:0;pointer-events:none;z-index:0;width:100%;height:100%;"></canvas>
+        <div class="container" style="position:relative;z-index:1;">
+            <div class="awards-hero-badge">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                AETHERIS 26 · AWARDS & NOMINASI
+            </div>
+            <h1 class="awards-hero-title">
+                Sipaling<br><span class="gold">Aetheris</span>
+            </h1>
+            <p class="awards-hero-sub">
+                18 kategori untuk para Aetherian yang paling berkesan. Vote favoritmu di Instagram!
+            </p>
+        </div>
+    </section>
+
+    <!-- WINNER TICKER (slow scroll) -->
+    <section class="winners-slider-wrap" style="padding: 0 0 60px;">
+        <div class="winners-track-outer">
+            <div class="winners-track" id="winnersTrack">
+                <!-- Dynamically populated below -->
+            </div>
+        </div>
+    </section>
+
+    <!-- WINNERS GRID — framed cards -->
+    <section class="nominations-section" style="padding-top: 20px;">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">◈ PARA PEMENANG</span>
+                <h2 class="section-title">Aetherian<br><em>Terpilih</em></h2>
+                <p class="section-desc">Selamat untuk para pemenang di setiap kategori — kalian adalah wajah Aetheris 26.</p>
+            </div>
+            <div class="nominations-grid" id="winnersGrid">
+                <!-- Winners only, populated by JS -->
+            </div>
+        </div>
+    </section>
+
+    <div style="padding: 40px 0 0;"><div style="max-width:200px;margin:0 auto;height:1px;background:linear-gradient(to right,transparent,rgba(149,206,255,0.25),transparent);"></div></div>
+
+    <!-- ALL NOMINATIONS for voting -->
+    <section class="nominations-section" style="padding-top: 60px;">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">◈ NOMINASI LENGKAP</span>
+                <h2 class="section-title">Vote Favorit<br><em>Kamu di Instagram</em></h2>
+                <p class="section-desc">Semua kandidat — klik "Vote on Instagram" dan support mereka!</p>
+            </div>
+
+            <div class="awards-filter">
+                <button class="filter-tab active" data-filter="all">Semua</button>
+                <button class="filter-tab" data-filter="AKL">AKL</button>
+                <button class="filter-tab" data-filter="MPL">MPL</button>
+                <button class="filter-tab" data-filter="PM">PM</button>
+                <button class="filter-tab" data-filter="TLG">TLG</button>
+                <button class="filter-tab" data-filter="DKV">DKV</button>
+                <button class="filter-tab" data-filter="PPL">PPL</button>
+                <button class="filter-tab" data-filter="TJK">TJK</button>
+                <button class="filter-tab" data-filter="TKF">TKF</button>
+                <button class="filter-tab" data-filter="TLM">TLM</button>
+                <button class="filter-tab" data-filter="TET">TET</button>
+            </div>
+
+            <div class="nominations-grid" id="nominationsGrid">
+                <!-- All nominations, populated by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container footer-inner">
+            <div class="footer-logo">
+                <img src="assets/images/logo-aetheris.png" alt="Aetheris 26" class="footer-logo-img">
+                <span>AETHERIS<em>26</em></span>
+            </div>
+            <p class="footer-tagline">"Rising Above Horizons."</p>
+            <div class="footer-divider"></div>
+            <p class="footer-copy">&copy; 2026 AETHERIS · SMKN 1 GARUT</p>
+        </div>
+    </footer>
+
+    <script>
+    // ===== NOMINATION DATA (dari spreadsheet REKAP TEMA DAN NOMINASI) =====
+    const nominasiData = [
+        // JURUSAN AKL
+        { no: 1, kategori: 'Sipaling Bestfriend', nama: 'Five Magic', jurusan: 'AKL', winner: true },
+        { no: 2, kategori: 'Sipaling Prestasi', nama: 'Salsabila Apriliyani', jurusan: 'AKL', winner: true },
+        { no: 3, kategori: 'Sipaling Sport', nama: 'Dini Nuraini', jurusan: 'AKL', winner: true },
+        { no: 4, kategori: 'Sipaling Nyubuh', nama: 'Fitri Lestari', jurusan: 'AKL', winner: true },
+        { no: 5, kategori: 'Sipaling E-Sport', nama: 'Reynaldo Samuel Kurniawan', jurusan: 'AKL', winner: true },
+        { no: 6, kategori: 'Sipaling Famous', nama: 'Kariena Retno Julaekha', jurusan: 'AKL', winner: true },
+        { no: 7, kategori: 'Sipaling Starboy', nama: 'Belum Tersedia', jurusan: 'AKL', winner: false },
+        { no: 8, kategori: 'Sipaling Stargirls', nama: 'Belum Tersedia', jurusan: 'AKL', winner: false },
+        { no: 9, kategori: 'Sipaling Komedi', nama: 'Zahran Khaerul Ajizi', jurusan: 'AKL', winner: true },
+        { no: 10, kategori: 'Sipaling Dispen', nama: 'Nivad Aidil Akmaluddien', jurusan: 'AKL', winner: true },
+        { no: 11, kategori: 'Sipaling Kpopers', nama: 'Gaisha Putri Naura', jurusan: 'AKL', winner: true },
+        { no: 12, kategori: 'Sipaling Kalcer', nama: 'Sintia Miftahul Janah', jurusan: 'AKL', winner: true },
+        { no: 13, kategori: 'Sipaling Rebahan', nama: 'Fadhilah Muhammad Fauzan', jurusan: 'AKL', winner: true },
+        { no: 14, kategori: 'Sipaling Wibu', nama: 'Belum Tersedia', jurusan: 'AKL', winner: false },
+        { no: 15, kategori: 'Sipaling Nolep', nama: 'Belum Tersedia', jurusan: 'AKL', winner: false },
+        { no: 16, kategori: 'Sipaling Cuan', nama: 'Meilva Lavli Vanessa', jurusan: 'AKL', winner: true },
+        { no: 17, kategori: 'Sipaling Couple', nama: 'Alfira Auzrelia & M. Rafi Al Mudzaki', jurusan: 'AKL', winner: true, isCouple: true },
+        { no: 18, kategori: 'Sipaling Ambis', nama: 'Fadli Alafgan', jurusan: 'AKL', winner: true },
+
+        // JURUSAN MPL
+        { no: 1, kategori: 'Sipaling Bestfriend', nama: 'Belum Tersedia', jurusan: 'MPL', winner: false },
+        { no: 2, kategori: 'Sipaling Prestasi', nama: 'Haura Putri Meilani', jurusan: 'MPL', winner: true },
+        { no: 3, kategori: 'Sipaling Sport', nama: 'M. Dery Yandi Saputra', jurusan: 'MPL', winner: true },
+        { no: 4, kategori: 'Sipaling Nyubuh', nama: 'Siti Salwa', jurusan: 'MPL', winner: true },
+        { no: 5, kategori: 'Sipaling E-Sport', nama: 'Reza Yusuf Nasrulloh', jurusan: 'MPL', winner: true },
+        { no: 6, kategori: 'Sipaling Famous', nama: 'Arista Maulana', jurusan: 'MPL', winner: true },
+        { no: 7, kategori: 'Sipaling Starboy', nama: 'Khaerul Dziban Nugraha', jurusan: 'MPL', winner: true },
+        { no: 8, kategori: 'Sipaling Stargirls', nama: 'Naisya Suci Nadia', jurusan: 'MPL', winner: true },
+        { no: 9, kategori: 'Sipaling Komedi', nama: 'Anisa Sri Rahayu', jurusan: 'MPL', winner: true },
+        { no: 10, kategori: 'Sipaling Dispen', nama: 'Shalma Putri Azzahra', jurusan: 'MPL', winner: true },
+        { no: 11, kategori: 'Sipaling Kpopers', nama: 'Mutis Az-Zahra Nur Triawan', jurusan: 'MPL', winner: true },
+        { no: 12, kategori: 'Sipaling Kalcer', nama: 'Isma Febriani', jurusan: 'MPL', winner: true },
+        { no: 13, kategori: 'Sipaling Rebahan', nama: 'Siti Revina', jurusan: 'MPL', winner: true },
+        { no: 14, kategori: 'Sipaling Wibu', nama: 'Zahra Nurfathi Fauziah', jurusan: 'MPL', winner: true },
+        { no: 15, kategori: 'Sipaling Nolep', nama: 'Alisa Putri Khayla', jurusan: 'MPL', winner: true },
+        { no: 16, kategori: 'Sipaling Cuan', nama: 'Risma Rahmawati', jurusan: 'MPL', winner: true },
+        { no: 17, kategori: 'Sipaling Couple', nama: 'Silvia Dwi Apriliani & Ardhy Winata', jurusan: 'MPL', winner: true, isCouple: true },
+        { no: 18, kategori: 'Sipaling Ambis', nama: 'Rendi Rinaldi', jurusan: 'MPL', winner: true },
+
+        // JURUSAN PM
+        { no: 2, kategori: 'Sipaling Prestasi', nama: 'Rosa', jurusan: 'PM', winner: true },
+        { no: 6, kategori: 'Sipaling Famous', nama: 'Welly', jurusan: 'PM', winner: true },
+        { no: 8, kategori: 'Sipaling Stargirls', nama: 'Awen', jurusan: 'PM', winner: true },
+        { no: 9, kategori: 'Sipaling Komedi', nama: 'Nay', jurusan: 'PM', winner: true },
+        { no: 10, kategori: 'Sipaling Dispen', nama: 'Sabna', jurusan: 'PM', winner: true },
+        { no: 11, kategori: 'Sipaling Kpopers', nama: 'Zahra S', jurusan: 'PM', winner: true },
+        { no: 13, kategori: 'Sipaling Rebahan', nama: 'Kekey', jurusan: 'PM', winner: true },
+        { no: 14, kategori: 'Sipaling Wibu', nama: 'Alya', jurusan: 'PM', winner: true },
+        { no: 16, kategori: 'Sipaling Cuan', nama: 'Bilqis', jurusan: 'PM', winner: true },
+        { no: 17, kategori: 'Sipaling Couple', nama: 'Rasya & Iren', jurusan: 'PM', winner: true, isCouple: true },
+        { no: 18, kategori: 'Sipaling Ambis', nama: 'Shakila', jurusan: 'PM', winner: true },
+
+        // JURUSAN TLG
+        { no: 3, kategori: 'Sipaling Sport', nama: 'Nabil', jurusan: 'TLG', winner: true },
+        { no: 4, kategori: 'Sipaling Nyubuh', nama: 'Leni', jurusan: 'TLG', winner: true },
+        { no: 5, kategori: 'Sipaling E-Sport', nama: 'Haikal', jurusan: 'TLG', winner: true },
+        { no: 6, kategori: 'Sipaling Famous', nama: 'Gio', jurusan: 'TLG', winner: true },
+        { no: 7, kategori: 'Sipaling Starboy', nama: 'Rival', jurusan: 'TLG', winner: true },
+        { no: 8, kategori: 'Sipaling Stargirls', nama: 'Naura', jurusan: 'TLG', winner: true },
+        { no: 9, kategori: 'Sipaling Komedi', nama: 'Raran', jurusan: 'TLG', winner: true },
+        { no: 10, kategori: 'Sipaling Dispen', nama: 'Neng Mona', jurusan: 'TLG', winner: true },
+        { no: 11, kategori: 'Sipaling Kpopers', nama: 'Kamila', jurusan: 'TLG', winner: true },
+        { no: 12, kategori: 'Sipaling Kalcer', nama: 'Alghifari', jurusan: 'TLG', winner: true },
+        { no: 13, kategori: 'Sipaling Rebahan', nama: 'Khoerunnisa', jurusan: 'TLG', winner: true },
+        { no: 14, kategori: 'Sipaling Wibu', nama: 'Insan', jurusan: 'TLG', winner: true },
+        { no: 15, kategori: 'Sipaling Nolep', nama: 'Hilda', jurusan: 'TLG', winner: true },
+        { no: 16, kategori: 'Sipaling Cuan', nama: 'Insan', jurusan: 'TLG', winner: true },
+        { no: 17, kategori: 'Sipaling Couple', nama: 'Andra & Bunga', jurusan: 'TLG', winner: true, isCouple: true },
+        { no: 18, kategori: 'Sipaling Ambis', nama: 'Nadia', jurusan: 'TLG', winner: true },
+
+        // JURUSAN DKV
+        { no: 1, kategori: 'Sipaling Bestfriend', nama: 'Whispers & Glitter', jurusan: 'DKV', winner: true, isCouple: true },
+        { no: 2, kategori: 'Sipaling Prestasi', nama: 'Ahmad Fauzi', jurusan: 'DKV', winner: true },
+
+        // PPL
+        { no: 1, kategori: 'Sipaling Bestfriend', nama: 'Uwiuiwuie', jurusan: 'PPL', winner: true },
+        { no: 2, kategori: 'Sipaling Prestasi', nama: 'Kayla', jurusan: 'PPL', winner: true },
+    ];
+
+    const kategoriEmoji = {
+        'Sipaling Bestfriend': '👯', 'Sipaling Prestasi': '🏆', 'Sipaling Sport': '⚽',
+        'Sipaling Nyubuh': '😴', 'Sipaling E-Sport': '🎮', 'Sipaling Famous': '⭐',
+        'Sipaling Starboy': '💫', 'Sipaling Stargirls': '✨', 'Sipaling Komedi': '😂',
+        'Sipaling Dispen': '🎭', 'Sipaling Kpopers': '🎵', 'Sipaling Kalcer': '🌊',
+        'Sipaling Rebahan': '🛋️', 'Sipaling Wibu': '🗾', 'Sipaling Nolep': '🏠',
+        'Sipaling Cuan': '💰', 'Sipaling Couple': '💑', 'Sipaling Ambis': '🚀',
+    };
+
+    // Build winner slider
+    function buildWinnersSlider() {
+        const winners = nominasiData.filter(n => n.winner && n.nama !== 'Belum Tersedia');
+        const doubled = [...winners, ...winners]; // duplicate for infinite scroll
+        const track = document.getElementById('winnersTrack');
+        track.innerHTML = doubled.map(w => `
+            <div class="winner-chip">
+                <div class="winner-trophy">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M8 21h8M12 17v4M6 7H4a2 2 0 0 0-2 2 6 6 0 0 0 6 6"/><path d="M18 7h2a2 2 0 0 1 2 2 6 6 0 0 1-6 6"/><path d="M6 3h12l-1 9a5 5 0 0 1-10 0L6 3z"/></svg>
+                </div>
+                <div class="winner-category">${w.kategori}</div>
+                <div class="winner-name">${w.nama}</div>
+                <div class="winner-jurusan">${w.jurusan}</div>
+            </div>
+        `).join('');
+    }
+
+    // Build nomination cards
+    function buildNominations(filterJurusan = 'all') {
+        const grid = document.getElementById('nominationsGrid');
+        const data = filterJurusan === 'all' ? nominasiData : nominasiData.filter(n => n.jurusan === filterJurusan);
+
+        if (!data.length) {
+            grid.innerHTML = '<div class="empty-state" style="grid-column:1/-1;text-align:center;padding:60px;color:var(--text-muted)"><p>Nominasi belum tersedia untuk jurusan ini.</p></div>';
+            return;
+        }
+
+        // Group by jurusan if showing all
+        if (filterJurusan === 'all') {
+            const grouped = {};
+            data.forEach(n => { if (!grouped[n.jurusan]) grouped[n.jurusan] = []; grouped[n.jurusan].push(n); });
+            let html = '';
+            for (const [dept, items] of Object.entries(grouped)) {
+                html += `<h3 class="nom-group-title" style="grid-column:1/-1;">Jurusan ${dept}</h3>`;
+                html += items.map(n => buildNomCard(n)).join('');
+            }
+            grid.innerHTML = html;
+        } else {
+            grid.innerHTML = data.map(n => buildNomCard(n)).join('');
+        }
+    }
+
+    function buildNomCard(n, forceWinner = false) {
+        const emoji = kategoriEmoji[n.kategori] || '🏅';
+        const isPlaceholder = n.nama === 'Belum Tersedia';
+        const photoSrc = `assets/photos/awards/${n.jurusan.toLowerCase()}-${n.kategori.toLowerCase().replace(/\s+/g,'-')}.jpg`;
+
+        return `
+            <div class="nomination-card ${n.isCouple ? 'couple' : ''} ${n.winner ? 'is-winner' : ''}" data-jurusan="${n.jurusan}">
+                <div class="nom-photo-frame">
+                    <div class="nom-photo-placeholder">
+                        <div class="nom-photo-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" style="width:48px;height:48px;opacity:0.25;"><rect x="3" y="5" width="18" height="15" rx="2"/><circle cx="12" cy="13" r="3"/><path d="M9 5l1.5-2h3L15 5"/></svg></div>
+                        <div class="nom-photo-hint">${isPlaceholder ? 'Foto belum tersedia' : 'AETHERIS 26'}</div>
+                    </div>
+                    <div class="nom-frame-corner tl"></div>
+                    <div class="nom-frame-corner tr"></div>
+                    <div class="nom-frame-corner bl"></div>
+                    <div class="nom-frame-corner br"></div>
+                    <div class="nom-trophy-badge"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+                    <div class="nom-number-badge">#${String(n.no).padStart(2,'0')} · ${n.jurusan}</div>
+                </div>
+                <div class="nom-body">
+                    ${(n.winner || forceWinner) && !isPlaceholder ? '<div class="winner-ribbon"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> WINNER</div>' : ''}
+                    <div class="nom-category">${n.kategori}</div>
+                    <div class="nom-name">${isPlaceholder ? '[Nama Belum Diisi]' : n.nama}</div>
+                    <div class="nom-jurusan">${n.jurusan} · SMKN 1 Garut · 2026</div>
+                    <a href="https://www.instagram.com/" target="_blank" class="nom-vote-btn">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                        Vote on Instagram
+                    </a>
+                </div>
+            </div>`;
+    }
+
+    // Filter tabs
+    document.querySelectorAll('.filter-tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+            document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+            buildNominations(tab.dataset.filter);
+        });
+    });
+
+    // Build winners-only grid
+    function buildWinnersGrid() {
+        const grid = document.getElementById('winnersGrid');
+        if (!grid) return;
+        const winners = nominasiData.filter(n => n.winner && n.nama !== 'Belum Tersedia');
+        grid.innerHTML = winners.map(n => buildNomCard(n, true)).join('');
+    }
+
+    // Init
+    buildWinnersSlider();
+    buildWinnersGrid();
+    buildNominations();
+
+    // ===== STARFIELD =====
+    const canvases = document.querySelectorAll('#starfield');
+    const starCanvas = canvases[0];
+    if (starCanvas) {
+        const ctx = starCanvas.getContext('2d');
+        starCanvas.style.position = 'fixed'; starCanvas.style.top = 0; starCanvas.style.left = 0;
+        starCanvas.style.width = '100%'; starCanvas.style.height = '100%'; starCanvas.style.zIndex = '0'; starCanvas.style.pointerEvents = 'none';
+        function rsz() { starCanvas.width = window.innerWidth; starCanvas.height = window.innerHeight; }
+        let stars = [];
+        function mkStars() { stars = []; for(let i=0;i<100;i++) stars.push({x:Math.random()*starCanvas.width,y:Math.random()*starCanvas.height,r:Math.random()*1.2+.3,a:Math.random(),s:Math.random()*.3+.1,d:(Math.random()-.5)*.2}); }
+        function draw() { ctx.clearRect(0,0,starCanvas.width,starCanvas.height); stars.forEach(s=>{s.a+=s.s*.01;if(s.a>1)s.a=0;s.x+=s.d;if(s.x<0)s.x=starCanvas.width;if(s.x>starCanvas.width)s.x=0;const al=Math.abs(Math.sin(s.a*Math.PI));ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,Math.PI*2);ctx.fillStyle=`rgba(255,224,101,${al*.5})`;ctx.fill();}); requestAnimationFrame(draw); }
+        rsz(); mkStars(); draw(); window.addEventListener('resize',()=>{rsz();mkStars();});
+    }
+
+    // ===== NAV =====
+    window.addEventListener('scroll', () => document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 50));
+    const hb = document.getElementById('hamburger'), mm = document.getElementById('mobileMenu');
+    if(hb) hb.addEventListener('click', () => { hb.classList.toggle('active'); mm.classList.toggle('open'); });
+
+    // ===== PAGE TRANSITIONS =====
+    window.addEventListener('load', () => document.body.classList.add('loaded'));
+    if (document.readyState === 'complete') document.body.classList.add('loaded');
+    document.addEventListener('click', e => {
+        const link = e.target.closest('a');
+        if (!link) return;
+        const href = link.getAttribute('href');
+        if (!href || href.startsWith('#') || href.startsWith('http') || link.getAttribute('target') === '_blank') return;
+        e.preventDefault(); document.body.classList.add('fading-out'); setTimeout(() => window.location.href = href, 400);
+    });
+    </script>
+</body>
+</html>

@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeri Kelas — AETHERIS 26</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300;1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/transitions.css">
+    <style>
+    /* ============================================================
+       YEARBOOK GALLERY — PER KELAS · AETHERIS 26
+    ============================================================ */
+
+    /* ===== PAGE HERO ===== */
+    .gallery-hero { padding: 140px 0 80px; text-align: center; background: radial-gradient(ellipse at 50% -20%, rgba(21,63,124,0.5) 0%, transparent 60%), var(--dark); }
+    .gallery-hero-badge { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-display); font-size: 0.7rem; letter-spacing: 0.25em; color: var(--sky); border: 1px solid rgba(149,206,255,0.3); padding: 8px 18px; border-radius: 30px; margin-bottom: 24px; }
+    .gallery-hero-title { font-family: var(--font-display); font-size: clamp(2.5rem, 6vw, 5rem); font-weight: 900; line-height: 1.1; margin-bottom: 16px; }
+    .gallery-hero-sub { color: var(--text-muted); font-size: 1rem; max-width: 520px; margin: 0 auto 20px; line-height: 1.7; }
+
+    /* ===== FILE NAMING GUIDE ===== */
+    .filename-guide { background: rgba(69,199,226,0.07); border: 1px solid rgba(69,199,226,0.2); border-radius: 16px; padding: 24px 32px; margin: 0 0 60px; }
+    .filename-guide h4 { font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.15em; color: var(--teal); margin-bottom: 12px; }
+    .filename-guide code { display: block; font-family: 'Courier New', monospace; font-size: 0.9rem; background: rgba(0,0,0,0.3); padding: 12px 16px; border-radius: 8px; color: var(--gold); margin: 8px 0; }
+    .filename-guide p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.7; margin-top: 10px; }
+
+    /* ===== DEPT FILTER ===== */
+    .dept-filter-row { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-bottom: 48px; }
+    .dept-filter-btn { font-family: var(--font-display); font-size: 0.7rem; letter-spacing: 0.1em; padding: 8px 20px; border-radius: 24px; border: 1px solid var(--glass-border); background: var(--glass); color: var(--text-muted); cursor: pointer; transition: all 0.25s; }
+    .dept-filter-btn:hover, .dept-filter-btn.active { background: rgba(149,206,255,0.12); border-color: rgba(149,206,255,0.4); color: var(--sky); }
+
+    /* ===== CLASS CARDS GRID ===== */
+    .classes-section { padding: 40px 0 100px; }
+    .class-card { background: var(--glass); backdrop-filter: blur(16px); border: 1px solid var(--glass-border); border-radius: 24px; overflow: hidden; transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease; cursor: pointer; }
+    .class-card:hover { transform: translateY(-6px); border-color: rgba(149,206,255,0.3); box-shadow: 0 20px 60px rgba(0,0,0,0.4); }
+    .classes-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 28px; }
+
+    /* Photo grid inside card */
+    .class-photos-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; aspect-ratio: 16/7; overflow: hidden; }
+    .class-photo-slot { position: relative; overflow: hidden; background: linear-gradient(135deg, rgba(21,63,124,0.3), rgba(8,14,26,0.8)); }
+    .class-photo-slot img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
+    .class-card:hover .class-photo-slot img { transform: scale(1.08); }
+    .class-photo-slot.main { grid-column: 1 / 3; grid-row: 1; }
+    .class-photo-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; opacity: 0.25; }
+
+    /* Horizon frame overlay */
+    .class-photo-frame { position: relative; }
+    .class-photo-frame::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+            180deg,
+            transparent 50%,
+            rgba(8,14,26,0.7) 100%
+        );
+        pointer-events: none;
+    }
+    /* Corner decorations */
+    .frame-corner { position: absolute; width: 20px; height: 20px; z-index: 5; }
+    .frame-corner.tl { top: 8px; left: 8px; border-top: 1.5px solid rgba(149,206,255,0.5); border-left: 1.5px solid rgba(149,206,255,0.5); }
+    .frame-corner.tr { top: 8px; right: 8px; border-top: 1.5px solid rgba(149,206,255,0.5); border-right: 1.5px solid rgba(149,206,255,0.5); }
+    .frame-corner.bl { bottom: 8px; left: 8px; border-bottom: 1.5px solid rgba(149,206,255,0.5); border-left: 1.5px solid rgba(149,206,255,0.5); }
+    .frame-corner.br { bottom: 8px; right: 8px; border-bottom: 1.5px solid rgba(149,206,255,0.5); border-right: 1.5px solid rgba(149,206,255,0.5); }
+
+    /* Card info */
+    .class-info { padding: 20px 22px; }
+    .class-dept-badge { display: inline-block; font-family: var(--font-display); font-size: 0.6rem; letter-spacing: 0.15em; padding: 3px 10px; border-radius: 8px; margin-bottom: 8px; }
+    .class-name { font-family: var(--font-display); font-size: 1.2rem; font-weight: 700; color: var(--text-main); margin-bottom: 4px; }
+    .class-theme { font-family: var(--font-italic); font-style: italic; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 12px; }
+    .class-meta { display: flex; align-items: center; justify-content: space-between; }
+    .class-count { font-size: 0.8rem; color: var(--text-muted); }
+    .class-view-btn { font-family: var(--font-display); font-size: 0.65rem; letter-spacing: 0.1em; padding: 6px 14px; border-radius: 10px; background: rgba(149,206,255,0.08); border: 1px solid rgba(149,206,255,0.2); color: var(--sky); transition: all 0.2s; }
+    .class-card:hover .class-view-btn { background: rgba(149,206,255,0.15); border-color: rgba(149,206,255,0.4); }
+
+    /* ===== LIGHTBOX / MODAL ===== */
+    .gallery-modal { position: fixed; inset: 0; z-index: 9999; display: flex; align-items: center; justify-content: center; background: rgba(5,10,20,0.95); backdrop-filter: blur(20px); opacity: 0; visibility: hidden; transition: opacity 0.3s, visibility 0.3s; }
+    .gallery-modal.open { opacity: 1; visibility: visible; }
+    .modal-gallery-inner { width: 90vw; max-width: 1000px; max-height: 90vh; overflow-y: auto; background: var(--dark-card); border: 1px solid var(--glass-border); border-radius: 28px; padding: 32px; }
+    .modal-close { position: absolute; top: 20px; right: 20px; width: 44px; height: 44px; border-radius: 50%; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12); color: var(--text-main); font-size: 1.2rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s; }
+    .modal-close:hover { background: rgba(255,255,255,0.15); }
+    .modal-class-title { font-family: var(--font-display); font-size: 1.5rem; font-weight: 700; margin-bottom: 8px; color: var(--text-main); }
+    .modal-class-theme { font-family: var(--font-italic); font-style: italic; color: var(--gold); margin-bottom: 24px; }
+    .modal-photos-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; }
+    .modal-photo-item { position: relative; aspect-ratio: 3/4; border-radius: 14px; overflow: hidden; background: var(--glass); border: 1px solid var(--glass-border); }
+    .modal-photo-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s; }
+    .modal-photo-item:hover img { transform: scale(1.05); }
+    .modal-photo-item .photo-name { position: absolute; bottom: 0; left: 0; right: 0; padding: 8px; background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); font-size: 0.72rem; color: #fff; font-family: var(--font-display); }
+
+    /* Dept colors */
+    .dept-AKL { background: rgba(255,224,101,0.12); border-color: rgba(255,224,101,0.3); color: #FFE065; }
+    .dept-MPL { background: rgba(69,199,226,0.12); border-color: rgba(69,199,226,0.3); color: #45C7E2; }
+    .dept-PM  { background: rgba(149,206,255,0.12); border-color: rgba(149,206,255,0.3); color: #95CEFF; }
+    .dept-DKV { background: rgba(240,101,149,0.12); border-color: rgba(240,101,149,0.3); color: #f06595; }
+    .dept-TJK { background: rgba(105,219,124,0.12); border-color: rgba(105,219,124,0.3); color: #69db7c; }
+    .dept-TKF { background: rgba(218,119,242,0.12); border-color: rgba(218,119,242,0.3); color: #da77f2; }
+    .dept-TLM { background: rgba(116,192,252,0.12); border-color: rgba(116,192,252,0.3); color: #74c0fc; }
+    .dept-PPL { background: rgba(255,169,77,0.12); border-color: rgba(255,169,77,0.3); color: #ffa94d; }
+    .dept-TLG { background: rgba(169,227,75,0.12); border-color: rgba(169,227,75,0.3); color: #a9e34b; }
+    .dept-TET { background: rgba(255,135,135,0.12); border-color: rgba(255,135,135,0.3); color: #ff8787; }
+
+    @media (max-width: 600px) { .classes-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+
+    <canvas id="starfield" class="starfield"></canvas>
+
+    <!-- NAV -->
+    <nav class="glass-nav" id="mainNav">
+        <div class="nav-inner">
+            <a href="index.html" class="logo" style="display:flex;align-items:center;gap:10px;text-decoration:none;">
+                <div class="logo-icon"><img src="assets/images/logo-aetheris.png" alt="" class="logo-img"></div>
+                <span class="logo-text">AETHERIS<em>26</em></span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="awards.html">Awards</a>
+                <a href="yearbook-gallery.html" style="color:var(--sky)">Galeri Kelas</a>
+                <a href="team.html">Tim Panitia</a>
+                <a href="gallery.html" class="nav-cta">Buku Alumni →</a>
+            </div>
+            <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+        </div>
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="index.html">Home</a>
+            <a href="awards.html">Awards</a>
+            <a href="yearbook-gallery.html">Galeri Kelas</a>
+            <a href="team.html">Tim Panitia</a>
+            <a href="gallery.html" class="mobile-cta">Buku Alumni →</a>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="gallery-hero">
+        <div class="container">
+            <div class="gallery-hero-badge">
+                <img src="assets/images/ombak.png" alt="" style="width:16px;height:16px;object-fit:contain;mix-blend-mode:screen;">
+                GALERI FOTO PERKELAS · AETHERIS 26
+            </div>
+            <h1 class="gallery-hero-title">
+                <span style="color:var(--sky)">Galeri</span><br>
+                Kelas Aetheris
+            </h1>
+            <p class="gallery-hero-sub">
+                24 kelas, 24 cerita berbeda. Setiap kelas punya tema foto yang unik — eksplorasi semuanya.
+            </p>
+        </div>
+    </section>
+
+    <!-- FILE NAMING GUIDE -->
+    <section style="padding: 0 0 40px;">
+        <div class="container">
+            <div class="filename-guide">
+                <h4>📁 PANDUAN PENAMAAN FILE FOTO</h4>
+                <code>Format: [kelas]-[nomer].jpg</code>
+                <code>Contoh: xii-akl1-01.jpg · xii-dkv3-15.jpg · xii-tjk2-08.jpg</code>
+                <p>
+                    Simpan semua foto di folder: <strong>assets/photos/gallery/[nama-kelas]/</strong><br>
+                    Contoh: <strong>assets/photos/gallery/xii-akl1/</strong> berisi <strong>01.jpg, 02.jpg, 03.jpg, ...</strong><br>
+                    Foto tema kelas disimpan di: <strong>assets/photos/gallery/[nama-kelas]/tema.jpg</strong>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- DEPT FILTER -->
+    <section class="classes-section">
+        <div class="container">
+            <div class="dept-filter-row">
+                <button class="dept-filter-btn active" data-dept="all">Semua Kelas</button>
+                <button class="dept-filter-btn" data-dept="AKL">AKL</button>
+                <button class="dept-filter-btn" data-dept="MPL">MPLB</button>
+                <button class="dept-filter-btn" data-dept="PM">PM</button>
+                <button class="dept-filter-btn" data-dept="DKV">DKV</button>
+                <button class="dept-filter-btn" data-dept="TJK">TJKT</button>
+                <button class="dept-filter-btn" data-dept="TKF">TKF</button>
+                <button class="dept-filter-btn" data-dept="TLM">TLM</button>
+                <button class="dept-filter-btn" data-dept="PPL">PPLG</button>
+                <button class="dept-filter-btn" data-dept="TLG">TLG</button>
+                <button class="dept-filter-btn" data-dept="TET">TET</button>
+            </div>
+
+            <div class="classes-grid" id="classesGrid"></div>
+        </div>
+    </section>
+
+    <!-- LIGHTBOX MODAL -->
+    <div class="gallery-modal" id="galleryModal">
+        <button class="modal-close" id="modalClose">✕</button>
+        <div class="modal-gallery-inner" id="modalInner"></div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container footer-inner">
+            <div class="footer-logo">
+                <img src="assets/images/logo-aetheris.png" alt="Aetheris 26" class="footer-logo-img">
+                <span>AETHERIS<em>26</em></span>
+            </div>
+            <p class="footer-tagline">"Rising Above Horizons."</p>
+            <div class="footer-divider"></div>
+            <p class="footer-copy">&copy; 2026 AETHERIS · SMKN 1 GARUT</p>
+        </div>
+    </footer>
+
+    <script>
+    // ===== CLASS DATA (dari spreadsheet JADWAL FOTO TEMA PERKELAS) =====
+    const classData = [
+        { id: 'xii-akl1',  name: 'XII AKL 1',  dept: 'AKL', tema: 'Vintage (Old Money)', siswa: 34 },
+        { id: 'xii-akl2',  name: 'XII AKL 2',  dept: 'AKL', tema: 'Brandal F1', siswa: 34 },
+        { id: 'xii-akl3',  name: 'XII AKL 3',  dept: 'AKL', tema: 'Street Wear', siswa: 34 },
+        { id: 'xii-mpl1',  name: 'XII MPL 1',  dept: 'MPL', tema: 'Sport Style', siswa: 33 },
+        { id: 'xii-mpl2',  name: 'XII MPL 2',  dept: 'MPL', tema: 'Maze Runner', siswa: 33 },
+        { id: 'xii-mpl3',  name: 'XII MPL 3',  dept: 'MPL', tema: 'Kebaya', siswa: 33 },
+        { id: 'xii-pm1',   name: 'XII PM 1',   dept: 'PM',  tema: 'Arctic Monkeys', siswa: 32 },
+        { id: 'xii-pm2',   name: 'XII PM 2',   dept: 'PM',  tema: 'Fast and Furious', siswa: 32 },
+        { id: 'xii-dkv1',  name: 'XII DKV 1',  dept: 'DKV', tema: 'One Case', siswa: 35 },
+        { id: 'xii-dkv2',  name: 'XII DKV 2',  dept: 'DKV', tema: 'Retro', siswa: 35 },
+        { id: 'xii-dkv3',  name: 'XII DKV 3',  dept: 'DKV', tema: 'Rakyat', siswa: 35 },
+        { id: 'xii-tjk1',  name: 'XII TJK 1',  dept: 'TJK', tema: '1998/2000s', siswa: 36 },
+        { id: 'xii-tjk2',  name: 'XII TJK 2',  dept: 'TJK', tema: 'Casino', siswa: 36 },
+        { id: 'xii-tjk3',  name: 'XII TJK 3',  dept: 'TJK', tema: 'Mafia', siswa: 36 },
+        { id: 'xii-tkf1',  name: 'XII TKF 1',  dept: 'TKF', tema: 'Y2K', siswa: 34 },
+        { id: 'xii-tkf2',  name: 'XII TKF 2',  dept: 'TKF', tema: 'Tradisional', siswa: 34 },
+        { id: 'xii-tkf3',  name: 'XII TKF 3',  dept: 'TKF', tema: 'Rock and Roll', siswa: 34 },
+        { id: 'xii-tlm1',  name: 'XII TLM 1',  dept: 'TLM', tema: 'Gossip Girl', siswa: 33 },
+        { id: 'xii-tlm2',  name: 'XII TLM 2',  dept: 'TLM', tema: 'American School', siswa: 33 },
+        { id: 'xii-ppll1', name: 'XII PPL 1',  dept: 'PPL', tema: 'Formal', siswa: 32 },
+        { id: 'xii-ppl2',  name: 'XII PPL 2',  dept: 'PPL', tema: 'Glamour', siswa: 32 },
+        { id: 'xii-tlg1',  name: 'XII TLG 1',  dept: 'TLG', tema: 'FBI', siswa: 30 },
+        { id: 'xii-tlg2',  name: 'XII TLG 2',  dept: 'TLG', tema: 'Mission Impossible', siswa: 30 },
+        { id: 'xii-tet',   name: 'XII TET',    dept: 'TET', tema: 'Street Style', siswa: 28 },
+    ];
+
+    const temaEmoji = { 'Vintage (Old Money)':'🎩','Brandal F1':'🏎️','Street Wear':'👟','Sport Style':'⚽','Maze Runner':'🏃','Kebaya':'👘','Arctic Monkeys':'🎸','Fast and Furious':'🚗','One Case':'🕶️','Retro':'📻','Rakyat':'🌿','1998/2000s':'📼','Casino':'🎰','Mafia':'🎩','Y2K':'💿','Tradisional':'🏮','Rock and Roll':'🎸','Gossip Girl':'💅','American School':'🎓','Formal':'👔','Glamour':'✨','FBI':'🕵️','Mission Impossible':'💼','Street Style':'🛹' };
+
+    function buildClasses(filter = 'all') {
+        const grid = document.getElementById('classesGrid');
+        const data = filter === 'all' ? classData : classData.filter(c => c.dept === filter);
+
+        grid.innerHTML = data.map(cls => {
+            const emoji = temaEmoji[cls.tema] || '📸';
+            const deptClass = `dept-${cls.dept}`;
+            // Generate placeholder slots
+            const slots = Array.from({length: 6}, (_, i) => `
+                <div class="class-photo-slot ${i === 0 ? 'main' : ''}">
+                    <div class="class-photo-placeholder"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" style="opacity:0.2"><rect x="3" y="5" width="18" height="15" rx="2"/><circle cx="12" cy="13" r="3"/><path d="M9 5l1.5-2h3L15 5"/></svg></div>
+                </div>`).join('');
+
+            return `
+                <div class="class-card" data-id="${cls.id}" data-dept="${cls.dept}" onclick="openModal('${cls.id}')">
+                    <div class="class-photo-frame">
+                        <div class="class-photos-grid">${slots}</div>
+                        <div class="frame-corner tl"></div>
+                        <div class="frame-corner tr"></div>
+                        <div class="frame-corner bl"></div>
+                        <div class="frame-corner br"></div>
+                    </div>
+                    <div class="class-info">
+                        <span class="class-dept-badge ${deptClass}">${cls.dept}</span>
+                        <div class="class-name">${cls.name}</div>
+                        <div class="class-theme">${emoji} Tema: ${cls.tema}</div>
+                        <div class="class-meta">
+                            <span class="class-count">~ ${cls.siswa} Aetherian</span>
+                            <span class="class-view-btn">Lihat Galeri →</span>
+                        </div>
+                    </div>
+                </div>`;
+        }).join('');
+    }
+
+    function openModal(classId) {
+        const cls = classData.find(c => c.id === classId);
+        if (!cls) return;
+
+        const emoji = temaEmoji[cls.tema] || '📸';
+        const photoSlots = Array.from({length: Math.min(cls.siswa, 30)}, (_, i) => {
+            const num = String(i + 1).padStart(2, '0');
+            return `
+                <div class="modal-photo-item">
+                    <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:var(--glass);"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" style="opacity:0.2;"><rect x="3" y="5" width="18" height="15" rx="2"/><circle cx="12" cy="13" r="3"/><path d="M9 5l1.5-2h3L15 5"/></svg></div>
+                    <div class="photo-name">Siswa ${num}</div>
+                </div>`;
+        }).join('');
+
+        document.getElementById('modalInner').innerHTML = `
+            <div class="modal-class-title">${cls.name}</div>
+            <div class="modal-class-theme">${emoji} Tema: ${cls.tema}</div>
+            <div style="font-family:var(--font-display);font-size:0.65rem;letter-spacing:0.1em;color:var(--text-muted);margin-bottom:16px;">
+                📁 Simpan foto di: <span style="color:var(--sky)">assets/photos/gallery/${cls.id}/</span> · Format: 01.jpg, 02.jpg, ...
+            </div>
+            <div class="modal-photos-grid">${photoSlots}</div>`;
+
+        document.getElementById('galleryModal').classList.add('open');
+        document.body.style.overflow = 'hidden';
+    }
+
+    document.getElementById('modalClose').addEventListener('click', closeModal);
+    document.getElementById('galleryModal').addEventListener('click', e => { if (e.target === e.currentTarget) closeModal(); });
+    function closeModal() { document.getElementById('galleryModal').classList.remove('open'); document.body.style.overflow = ''; }
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+    // Filter
+    document.querySelectorAll('.dept-filter-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.dept-filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            buildClasses(btn.dataset.dept);
+        });
+    });
+
+    buildClasses();
+
+    // ===== STARFIELD =====
+    (function() {
+        const c = document.getElementById('starfield');
+        if (!c) return;
+        const ctx = c.getContext('2d');
+        function rsz() { c.width = window.innerWidth; c.height = window.innerHeight; }
+        let stars = [];
+        function mk() { stars=[]; for(let i=0;i<100;i++) stars.push({x:Math.random()*c.width,y:Math.random()*c.height,r:Math.random()*1.2+.3,a:Math.random(),s:Math.random()*.3+.1,d:(Math.random()-.5)*.2}); }
+        function draw() { ctx.clearRect(0,0,c.width,c.height); stars.forEach(s=>{s.a+=s.s*.01;if(s.a>1)s.a=0;s.x+=s.d;if(s.x<0)s.x=c.width;if(s.x>c.width)s.x=0;const al=Math.abs(Math.sin(s.a*Math.PI));ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,Math.PI*2);ctx.fillStyle=`rgba(255,224,101,${al*.5})`;ctx.fill();}); requestAnimationFrame(draw); }
+        rsz(); mk(); draw(); window.addEventListener('resize',()=>{rsz();mk();});
+    })();
+
+    // ===== NAV & TRANSITIONS =====
+    window.addEventListener('scroll', () => document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 50));
+    const hb = document.getElementById('hamburger'), mm = document.getElementById('mobileMenu');
+    if (hb) hb.addEventListener('click', () => { hb.classList.toggle('active'); mm.classList.toggle('open'); });
+    window.addEventListener('load', () => document.body.classList.add('loaded'));
+    if (document.readyState === 'complete') document.body.classList.add('loaded');
+    document.addEventListener('click', e => {
+        const link = e.target.closest('a');
+        if (!link) return;
+        const href = link.getAttribute('href');
+        if (!href || href.startsWith('#') || href.startsWith('http') || link.getAttribute('target') === '_blank') return;
+        e.preventDefault(); document.body.classList.add('fading-out'); setTimeout(() => window.location.href = href, 400);
+    });
+    </script>
+</body>
+</html>

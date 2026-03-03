@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tim Panitia — AETHERIS 26</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300;1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/transitions.css">
+    <style>
+    /* ============================================================
+       AETHERIS TEAM PAGE — TIM PANITIA
+    ============================================================ */
+
+    /* HERO */
+    .team-hero { padding: 140px 0 80px; text-align: center; background: radial-gradient(ellipse at 50% -10%, rgba(21,63,124,0.55) 0%, transparent 65%), var(--dark); }
+    .team-hero-badge { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-display); font-size: 0.7rem; letter-spacing: 0.25em; color: var(--gold); border: 1px solid rgba(255,224,101,0.3); padding: 8px 18px; border-radius: 30px; margin-bottom: 24px; }
+    .team-hero-title { font-family: var(--font-display); font-size: clamp(2.5rem, 6vw, 5rem); font-weight: 900; line-height: 1.1; margin-bottom: 16px; }
+    .team-hero-sub { color: var(--text-muted); max-width: 500px; margin: 0 auto; line-height: 1.8; }
+
+    /* ===== 3 PILLARS ===== */
+    .pillars-section { padding: 80px 0; }
+    .pillars-title { text-align: center; margin-bottom: 56px; }
+    .pillars-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; max-width: 900px; margin: 0 auto; }
+    .pillar-card { background: linear-gradient(135deg, rgba(21,63,124,0.25), rgba(8,14,26,0.6)); backdrop-filter: blur(16px); border: 1px solid rgba(255,224,101,0.2); border-radius: 28px; padding: 36px 24px; text-align: center; position: relative; overflow: hidden; transition: transform 0.35s, border-color 0.35s, box-shadow 0.35s; }
+    .pillar-card::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 0%, rgba(255,224,101,0.06) 0%, transparent 60%); }
+    .pillar-card:hover { transform: translateY(-6px); border-color: rgba(255,224,101,0.4); box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 40px rgba(255,224,101,0.05); }
+    .pillar-photo-wrap { width: 100px; height: 100px; margin: 0 auto 20px; position: relative; }
+    .pillar-photo { width: 100px; height: 100px; border-radius: 50%; overflow: hidden; background: var(--glass); border: 2px solid rgba(255,224,101,0.3); display: flex; align-items: center; justify-content: center; font-size: 2.5rem; }
+    .pillar-photo img { width: 100%; height: 100%; object-fit: cover; }
+    .pillar-gold-ring { position: absolute; inset: -6px; border-radius: 50%; border: 1px solid rgba(255,224,101,0.2); animation: rotateSlow 8s linear infinite; }
+    .pillar-gold-ring::after { content: '✦'; position: absolute; top: 2px; left: 50%; transform: translateX(-50%); color: var(--gold); font-size: 0.7rem; }
+    @keyframes rotateSlow { to { transform: rotate(360deg); } }
+    .pillar-role { font-family: var(--font-display); font-size: 0.65rem; letter-spacing: 0.2em; color: var(--gold); margin-bottom: 8px; opacity: 0.8; }
+    .pillar-name { font-family: var(--font-display); font-size: 1.05rem; font-weight: 700; color: var(--text-main); margin-bottom: 4px; }
+    .pillar-org { font-size: 0.8rem; color: var(--text-muted); }
+    .pillar-gold-line { width: 40px; height: 2px; background: linear-gradient(to right, transparent, var(--gold), transparent); margin: 16px auto 0; }
+
+    /* Connector lines */
+    .org-connector { display: flex; justify-content: center; align-items: center; height: 48px; position: relative; }
+    .org-connector::before { content: ''; position: absolute; top: 0; left: 50%; width: 1px; height: 100%; background: linear-gradient(to bottom, rgba(255,224,101,0.3), rgba(149,206,255,0.3)); }
+    .org-connector-h { position: relative; display: flex; justify-content: center; height: 2px; background: linear-gradient(to right, transparent, rgba(255,224,101,0.3) 50%, transparent); margin: 0 auto; width: 70%; margin-bottom: 40px; }
+
+    /* ===== BPH SECTION ===== */
+    .bph-section { padding: 0 0 80px; }
+    .bph-inner { max-width: 800px; margin: 0 auto; }
+    .bph-row { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; max-width: 600px; margin: 0 auto 24px; }
+    .bph-row.single { grid-template-columns: 1fr; max-width: 280px; }
+
+    /* ===== DIVISION CARDS ===== */
+    .divisions-section { padding: 0 0 100px; }
+    .divisions-title { text-align: center; margin-bottom: 48px; }
+    .divisions-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; }
+
+    .division-card { background: var(--glass); backdrop-filter: blur(12px); border: 1px solid var(--glass-border); border-radius: 20px; overflow: hidden; transition: transform 0.3s, border-color 0.3s; }
+    .division-card:hover { transform: translateY(-4px); border-color: rgba(149,206,255,0.25); }
+    .division-header { padding: 20px 22px 16px; border-bottom: 1px solid var(--glass-border); display: flex; align-items: center; gap: 14px; }
+    .division-icon { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0; }
+    .division-name { font-family: var(--font-display); font-size: 0.85rem; letter-spacing: 0.08em; font-weight: 600; color: var(--text-main); }
+    .division-coord { font-size: 0.75rem; color: var(--text-muted); margin-top: 2px; }
+    .division-members { padding: 14px 22px; }
+    .member-row { display: flex; align-items: center; gap: 10px; padding: 6px 0; border-bottom: 1px solid rgba(255,255,255,0.04); }
+    .member-row:last-child { border-bottom: none; }
+    .member-avatar { width: 32px; height: 32px; border-radius: 50%; background: var(--glass); border: 1px solid var(--glass-border); display: flex; align-items: center; justify-content: center; font-size: 0.8rem; flex-shrink: 0; overflow: hidden; }
+    .member-avatar img { width: 100%; height: 100%; object-fit: cover; }
+    .member-info { flex: 1; min-width: 0; }
+    .member-name { font-size: 0.85rem; color: var(--text-main); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .member-class { font-size: 0.72rem; color: var(--text-muted); }
+    .member-role-badge { font-family: var(--font-display); font-size: 0.55rem; letter-spacing: 0.1em; padding: 2px 8px; border-radius: 6px; flex-shrink: 0; }
+    .badge-coord { background: rgba(255,224,101,0.1); border: 1px solid rgba(255,224,101,0.25); color: var(--gold); }
+    .badge-wakil { background: rgba(69,199,226,0.1); border: 1px solid rgba(69,199,226,0.25); color: var(--teal); }
+
+    /* Person card reusable */
+    .person-card { background: var(--glass); border: 1px solid var(--glass-border); border-radius: 20px; padding: 24px 20px; text-align: center; transition: transform 0.3s, border-color 0.3s; }
+    .person-card:hover { transform: translateY(-4px); border-color: rgba(255,224,101,0.2); }
+    .person-photo { width: 80px; height: 80px; border-radius: 50%; margin: 0 auto 14px; background: var(--glass); border: 1.5px solid var(--glass-border); display: flex; align-items: center; justify-content: center; font-size: 2rem; overflow: hidden; }
+    .person-photo img { width: 100%; height: 100%; object-fit: cover; }
+    .person-role { font-family: var(--font-display); font-size: 0.6rem; letter-spacing: 0.15em; color: var(--gold); margin-bottom: 4px; }
+    .person-name { font-family: var(--font-display); font-size: 0.95rem; font-weight: 600; color: var(--text-main); }
+    .person-class { font-size: 0.75rem; color: var(--text-muted); margin-top: 3px; }
+
+    /* Photo path info */
+    .photo-path { font-size: 0.68rem; color: rgba(149,206,255,0.5); font-family: 'Courier New', monospace; margin-top: 6px; }
+
+    @media (max-width: 768px) {
+        .pillars-grid { grid-template-columns: 1fr; max-width: 320px; }
+        .bph-row { grid-template-columns: 1fr; max-width: 280px; }
+        .divisions-grid { grid-template-columns: 1fr; }
+    }
+    </style>
+</head>
+<body>
+
+    <canvas id="starfield" class="starfield"></canvas>
+
+    <!-- NAV -->
+    <nav class="glass-nav" id="mainNav">
+        <div class="nav-inner">
+            <a href="index.html" class="logo" style="display:flex;align-items:center;gap:10px;text-decoration:none;">
+                <div class="logo-icon"><img src="assets/images/logo-aetheris.png" alt="" class="logo-img"></div>
+                <span class="logo-text">AETHERIS<em>26</em></span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="awards.html">Awards</a>
+                <a href="yearbook-gallery.html">Galeri Kelas</a>
+                <a href="team.html" style="color:var(--gold)">Tim Panitia</a>
+                <a href="gallery.html" class="nav-cta">Buku Alumni →</a>
+            </div>
+            <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+        </div>
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="index.html">Home</a>
+            <a href="awards.html">Awards</a>
+            <a href="yearbook-gallery.html">Galeri Kelas</a>
+            <a href="team.html">Tim Panitia</a>
+            <a href="gallery.html" class="mobile-cta">Buku Alumni →</a>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="team-hero">
+        <div class="container">
+            <div class="team-hero-badge">
+                <img src="assets/images/burung.png" alt="" style="width:16px;height:16px;object-fit:contain;mix-blend-mode:screen;">
+                AETHERIS 26 · TIM PANITIA
+            </div>
+            <h1 class="team-hero-title">
+                The Team Behind<br>
+                <span style="color:var(--gold)">Aetheris</span>
+            </h1>
+            <p class="team-hero-sub">
+                Mereka yang bekerja keras di balik layar untuk mewujudkan kenangan yang tak terlupakan bagi 847 Aetherian.
+            </p>
+        </div>
+    </section>
+
+    <!-- ===== 3 PILLARS: Kepsek · Wakasek · Pembina ===== -->
+    <section class="pillars-section">
+        <div class="container">
+            <div class="pillars-title">
+                <span class="section-label">◈ TIGA PILAR UTAMA</span>
+                <h2 class="section-title" style="margin-top:12px;">Kepemimpinan &<br><em>Bimbingan</em></h2>
+            </div>
+            <div class="pillars-grid">
+                <!-- Kepala Sekolah -->
+                <div class="pillar-card">
+                    <div class="pillar-photo-wrap">
+                        <div class="pillar-photo">
+                            <!-- <img src="assets/photos/team/kepsek.jpg" alt="Kepala Sekolah"> -->
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" style="opacity:0.5"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+                        </div>
+                        <div class="pillar-gold-ring"></div>
+                    </div>
+                    <div class="pillar-role">KEPALA SEKOLAH</div>
+                    <div class="pillar-name">Drs. [Nama Kepsek]</div>
+                    <div class="pillar-org">SMKN 1 Garut</div>
+                    <div class="pillar-gold-line"></div>
+                    <p class="photo-path">assets/photos/team/kepsek.jpg</p>
+                </div>
+                <!-- Wakasek -->
+                <div class="pillar-card">
+                    <div class="pillar-photo-wrap">
+                        <div class="pillar-photo">
+                            <!-- <img src="assets/photos/team/wakasek.jpg" alt="Wakasek"> -->
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" style="opacity:0.5"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="2"/><path d="M9 12h6M9 16h4"/></svg>
+                        </div>
+                        <div class="pillar-gold-ring"></div>
+                    </div>
+                    <div class="pillar-role">WAKIL KEPALA SEKOLAH</div>
+                    <div class="pillar-name">[Nama Wakasek]</div>
+                    <div class="pillar-org">Bid. Kesiswaan · SMKN 1 Garut</div>
+                    <div class="pillar-gold-line"></div>
+                    <p class="photo-path">assets/photos/team/wakasek.jpg</p>
+                </div>
+                <!-- Pembina -->
+                <div class="pillar-card" style="border-color:rgba(255,224,101,0.35);">
+                    <div class="pillar-photo-wrap">
+                        <div class="pillar-photo" style="border-color:rgba(255,224,101,0.5);">
+                            <!-- <img src="assets/photos/team/pembina.jpg" alt="Pembina"> -->
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" style="opacity:0.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                        </div>
+                        <div class="pillar-gold-ring" style="border-color:rgba(255,224,101,0.4);"></div>
+                    </div>
+                    <div class="pillar-role">PEMBINA ANGKATAN 26</div>
+                    <div class="pillar-name">Ibu Citra Cantik</div>
+                    <div class="pillar-org">Pembina Aetheris · SMKN 1 Garut</div>
+                    <div class="pillar-gold-line"></div>
+                    <p class="photo-path">assets/photos/team/pembina.jpg</p>
+                </div>
+            </div>
+
+            <!-- Connector -->
+            <div class="org-connector"></div>
+            <div class="org-connector-h"></div>
+        </div>
+    </section>
+
+    <!-- ===== BPH: Ketua & Staff Inti ===== -->
+    <section class="bph-section">
+        <div class="container">
+            <div style="text-align:center;margin-bottom:40px;">
+                <span class="section-label">◈ BADAN PENGURUS HARIAN (BPH)</span>
+            </div>
+            <div class="bph-inner">
+                <!-- Ketua & Wakil -->
+                <div class="bph-row" style="max-width:600px;">
+                    <div class="person-card" style="border-color:rgba(255,224,101,0.3);">
+                        <div class="person-photo" style="border-color:rgba(255,224,101,0.4);">
+                            <!-- <img src="assets/photos/team/ketua.jpg" alt="Ketua"> -->
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" style="opacity:0.5"><path d="M3 19h18M7 11l5-7 5 7"/><path d="M5 19V11M19 19V11M12 19V4"/></svg>
+                        </div>
+                        <div class="person-role">KETUA PELAKSANA</div>
+                        <div class="person-name">Ananda Maulid</div>
+                        <div class="person-class">XII TJK 2</div>
+                        <p class="photo-path">assets/photos/team/ketua.jpg</p>
+                    </div>
+                    <div class="person-card">
+                        <div class="person-photo">
+                            <!-- <img src="assets/photos/team/wakil-ketua.jpg" alt="Wakil Ketua"> -->
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" style="opacity:0.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                        </div>
+                        <div class="person-role">WAKIL KETUA PELAKSANA</div>
+                        <div class="person-name">Agung Pajar</div>
+                        <div class="person-class">XII PPL 2</div>
+                        <p class="photo-path">assets/photos/team/wakil-ketua.jpg</p>
+                    </div>
+                </div>
+                <!-- Sekretaris & Bendahara -->
+                <div class="bph-row" style="max-width:600px;">
+                    <div class="person-card">
+                        <div class="person-photo"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" style="opacity:0.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div>
+                        <div class="person-role">SEKRETARIS</div>
+                        <div class="person-name">Shalma P</div>
+                        <div class="person-class">XII MPL 1</div>
+                        <p class="photo-path">assets/photos/team/sekretaris.jpg</p>
+                    </div>
+                    <div class="person-card">
+                        <div class="person-photo"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" style="opacity:0.5"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
+                        <div class="person-role">BENDAHARA</div>
+                        <div class="person-name">Fatra I</div>
+                        <div class="person-class">XII TKF 1</div>
+                        <p class="photo-path">assets/photos/team/bendahara.jpg</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== DIVISIONS ===== -->
+    <section class="divisions-section">
+        <div class="container">
+            <div class="divisions-title">
+                <span class="section-label">◈ DIVISI-DIVISI AETHERIS 26</span>
+                <h2 class="section-title" style="margin-top:12px;">Tim yang Membuat<br><em>Segalanya Terwujud</em></h2>
+            </div>
+            <div class="divisions-grid">
+
+                <!-- DIVISI ACARA -->
+                <div class="division-card">
+                    <div class="division-header">
+                        <div class="division-icon" style="background:rgba(255,224,101,0.1);">🎭</div>
+                        <div>
+                            <div class="division-name">DIVISI ACARA</div>
+                            <div class="division-coord">Koordinasi rangkaian acara</div>
+                        </div>
+                    </div>
+                    <div class="division-members">
+                        <div class="member-row"><div class="member-avatar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" style="opacity:0.4"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div class="member-info"><div class="member-name">Nivad Aidil A</div><div class="member-class">XII AKL 1</div></div></div>
+                        <div class="member-row"><div class="member-avatar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" style="opacity:0.4"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div class="member-info"><div class="member-name">Fadli</div><div class="member-class">XII AKL</div></div></div>
+                        <div class="member-row"><div class="member-avatar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" style="opacity:0.4"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div class="member-info"><div class="member-name">Chello</div><div class="member-class">XII DKV 1</div></div></div>
+                        <div class="member-row"><div class="member-avatar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" style="opacity:0.4"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div class="member-info"><div class="member-name">Zalfa</div><div class="member-class">XII AKL 1</div></div></div>
+                        <div class="member-row"><div class="member-avatar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" style="opacity:0.4"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div class="member-info"><div class="member-name">Haura</div><div class="member-class">XII MPL 1</div></div></div>
+                        <div class="member-row"><div class="member-avatar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" style="opacity:0.4"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div class="member-info"><div class="member-name">Rasya Deanova</div><div class="member-class">XII TJK 2</div></div></div>
+                        <div class="member-row"><div class="member-avatar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" style="opacity:0.4"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div class="member-info"><div class="member-name">Mona</div><div class="member-class">—</div></div></div>
+                    </div>
+                </div>
+
+                <!-- DIVISI CREATIVE — Koordinator -->
+                <div class="division-card">
+                    <div class="division-header">
+                        <div class="division-icon" style="background:rgba(240,101,149,0.1);">🎨</div>
+                        <div>
+                            <div class="division-name">DIVISI CREATIVE</div>
+                            <div class="division-coord">Coord: Pramuditta · Wakil: Maulana</div>
+                        </div>
+                    </div>
+                    <div class="division-members">
+                        <div class="member-row"><div class="member-avatar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" style="opacity:0.4"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div class="member-info"><div class="member-name">Pramuditta</div><div class="member-class">XII DKV 3</div></div><span class="member-role-badge badge-coord">Koordinator</span></div>
+                        <div class="member-row"><div class="member-avatar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" style="opacity:0.4"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div class="member-info"><div class="member-name">Maulana</div><div class="member-class">XII DKV 3</div></div><span class="member-role-badge badge-wakil">Wakil</span></div>
+                        <div class="member-row"><div class="member-avatar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" style="opacity:0.4"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div class="member-info"><div class="member-name">Nadia</div><div class="member-class">XII DKV 3</div></div></div>
+                        <div class="member-row"><div class="member-avatar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" style="opacity:0.4"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div class="member-info"><div class="member-name">Rasya</div><div class="member-class">XII TJK 2</div></div></div>
+                        <div class="member-row"><div class="member-avatar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" style="opacity:0.4"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div class="member-info"><div class="member-name">Halwa</div><div class="member-class">XII</div></div></div>
+                        <div class="member-row"><div class="member-avatar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" style="opacity:0.4"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div class="member-info"><div class="member-name">Rayyan</div><div class="member-class">XII DKV 2</div></div></div>
+                        <div class="member-row"><div class="member-avatar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" style="opacity:0.4"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div class="member-info"><div class="member-name">Laura</div><div class="member-class">XII DKV</div></div></div>
+                        <div class="member-row"><div class="member-avatar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" style="opacity:0.4"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div class="member-info"><div class="member-name">Satrio</div><div class="member-class">XII DKV 1</div></div></div>
+                        <div class="member-row"><div class="member-avatar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" style="opacity:0.4"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div class="member-info"><div class="member-name">Nicho</div><div class="member-class">XII DKV 1</div></div></div>
+                        <div class="member-row"><div class="member-avatar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" style="opacity:0.4"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div class="member-info"><div class="member-name">Kinanti</div><div class="member-class">XII DKV 3</div></div></div>
+                        <div class="member-row"><div class="member-avatar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" style="opacity:0.4"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div class="member-info"><div class="member-name">Zaki</div><div class="member-class">XII DKV</div></div></div>
+                        <div class="member-row"><div class="member-avatar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" style="opacity:0.4"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div class="member-info"><div class="member-name">Felisha</div><div class="member-class">XII DKV</div></div></div>
+                        <div class="member-row"><div class="member-avatar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" style="opacity:0.4"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div class="member-info"><div class="member-name">Khanza</div><div class="member-class">X DKV</div></div></div>
+                        <div class="member-row"><div class="member-avatar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" style="opacity:0.4"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div class="member-info"><div class="member-name">Nabila</div><div class="member-class">XII AKL</div></div></div>
+                        <div class="member-row"><div class="member-avatar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" style="opacity:0.4"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div class="member-info"><div class="member-name">Alif</div><div class="member-class">X DKV</div></div></div>
+                    </div>
+                </div>
+
+                <!-- DIVISI FOTO -->
+                <div class="division-card">
+                    <div class="division-header">
+                        <div class="division-icon" style="background:rgba(149,206,255,0.1);">📷</div>
+                        <div>
+                            <div class="division-name">DIVISI FOTO</div>
+                            <div class="division-coord">Dokumentasi Yearbook</div>
+                        </div>
+                    </div>
+                    <div class="division-members">
+                        <div class="member-row"><div class="member-avatar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" style="opacity:0.4"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div class="member-info"><div class="member-name">Rima Rahmawati</div><div class="member-class">XII DKV 1</div></div><span class="member-role-badge badge-coord">PJ</span></div>
+                        <div class="member-row"><div class="member-avatar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" style="opacity:0.4"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div class="member-info"><div class="member-name">Andrea Fryssia J</div><div class="member-class">XII MPL 2</div></div></div>
+                        <div class="member-row"><div class="member-avatar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" style="opacity:0.4"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div class="member-info"><div class="member-name">Amalinda</div><div class="member-class">XIII DKV 1</div></div></div>
+                        <div class="member-row"><div class="member-avatar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" style="opacity:0.4"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div class="member-info"><div class="member-name">Felisha</div><div class="member-class">XII DKV 1</div></div></div>
+                        <div class="member-row"><div class="member-avatar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" style="opacity:0.4"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div class="member-info"><div class="member-name">Satrio</div><div class="member-class">XII DKV 1</div></div></div>
+                        <div class="member-row"><div class="member-avatar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" style="opacity:0.4"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div class="member-info"><div class="member-name">Panji</div><div class="member-class">XII DKV 1</div></div></div>
+                        <div class="member-row"><div class="member-avatar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" style="opacity:0.4"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div class="member-info"><div class="member-name">Moch Fadlan Y</div><div class="member-class">XI DKV 2</div></div></div>
+                        <div class="member-row"><div class="member-avatar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" style="opacity:0.4"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div class="member-info"><div class="member-name">Raffly</div><div class="member-class">X DKV 3</div></div></div>
+                        <div class="member-row"><div class="member-avatar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" style="opacity:0.4"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div class="member-info"><div class="member-name">Iman Ismail</div><div class="member-class">XI DKV 1</div></div></div>
+                        <div class="member-row"><div class="member-avatar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" style="opacity:0.4"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div class="member-info"><div class="member-name">Refaldi</div><div class="member-class">X DKV 1</div></div></div>
+                    </div>
+                </div>
+
+                <!-- DIVISI VIDEO -->
+                <div class="division-card">
+                    <div class="division-header">
+                        <div class="division-icon" style="background:rgba(105,219,124,0.1);">🎬</div>
+                        <div>
+                            <div class="division-name">DIVISI VIDEO</div>
+                            <div class="division-coord">Aftermovie & Dokumentasi Video</div>
+                        </div>
+                    </div>
+                    <div class="division-members">
+                        <div class="member-row"><div class="member-avatar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" style="opacity:0.4"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div class="member-info"><div class="member-name">Meidina Karin Tsalis</div><div class="member-class">XII DKV 1</div></div></div>
+                        <div class="member-row"><div class="member-avatar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" style="opacity:0.4"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div class="member-info"><div class="member-name">Rima Rahmawati</div><div class="member-class">XII DKV 1</div></div></div>
+                        <div class="member-row"><div class="member-avatar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" style="opacity:0.4"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div class="member-info"><div class="member-name">Kayla Putri Sofari</div><div class="member-class">XII DKV 3</div></div></div>
+                        <div class="member-row"><div class="member-avatar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" style="opacity:0.4"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div class="member-info"><div class="member-name">Anwar Zaki</div><div class="member-class">XII DKV 2</div></div></div>
+                        <div class="member-row"><div class="member-avatar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" style="opacity:0.4"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div class="member-info"><div class="member-name">Reihan Saputra M.J</div><div class="member-class">XII TJK 1</div></div></div>
+                    </div>
+                </div>
+
+                <!-- DIVISI MEDSOS -->
+                <div class="division-card">
+                    <div class="division-header">
+                        <div class="division-icon" style="background:rgba(255,169,77,0.1);">📱</div>
+                        <div>
+                            <div class="division-name">DIVISI MEDIA SOSIAL</div>
+                            <div class="division-coord">Instagram & Konten Digital</div>
+                        </div>
+                    </div>
+                    <div class="division-members">
+                        <div class="member-row"><div class="member-avatar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" style="opacity:0.4"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div class="member-info"><div class="member-name">Nabila C</div><div class="member-class">XII AKL</div></div></div>
+                        <div class="member-row"><div class="member-avatar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" style="opacity:0.4"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div class="member-info"><div class="member-name">Rasya Uton</div><div class="member-class">XII TJK 2</div></div></div>
+                        <div class="member-row"><div class="member-avatar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" style="opacity:0.4"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div class="member-info"><div class="member-name">Fauzan TKF</div><div class="member-class">XII TKF 1</div></div></div>
+                    </div>
+                </div>
+
+                <!-- DIVISI PERALATAN -->
+                <div class="division-card">
+                    <div class="division-header">
+                        <div class="division-icon" style="background:rgba(169,227,75,0.1);">🔧</div>
+                        <div>
+                            <div class="division-name">DIVISI PERALATAN</div>
+                            <div class="division-coord">Logistik & Perlengkapan</div>
+                        </div>
+                    </div>
+                    <div class="division-members">
+                        <div class="member-row"><div class="member-avatar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" style="opacity:0.4"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div class="member-info"><div class="member-name">Ardi Rochsan</div><div class="member-class">XII TJK 3</div></div></div>
+                        <div class="member-row"><div class="member-avatar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" style="opacity:0.4"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div class="member-info"><div class="member-name">Isan</div><div class="member-class">XII TJK 2</div></div></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container footer-inner">
+            <div class="footer-logo">
+                <img src="assets/images/logo-aetheris.png" alt="Aetheris 26" class="footer-logo-img">
+                <span>AETHERIS<em>26</em></span>
+            </div>
+            <p class="footer-tagline">"Rising Above Horizons."</p>
+            <div class="footer-divider"></div>
+            <p class="footer-copy">&copy; 2026 AETHERIS · SMKN 1 GARUT · Built with ♥ for the future</p>
+        </div>
+    </footer>
+
+    <script>
+    // ===== STARFIELD =====
+    (function() {
+        const c = document.getElementById('starfield');
+        if (!c) return;
+        const ctx = c.getContext('2d');
+        function rsz() { c.width = window.innerWidth; c.height = window.innerHeight; }
+        let stars = [];
+        function mk() { stars=[]; for(let i=0;i<100;i++) stars.push({x:Math.random()*c.width,y:Math.random()*c.height,r:Math.random()*1.2+.3,a:Math.random(),s:Math.random()*.3+.1,d:(Math.random()-.5)*.2}); }
+        function draw() { ctx.clearRect(0,0,c.width,c.height); stars.forEach(s=>{s.a+=s.s*.01;if(s.a>1)s.a=0;s.x+=s.d;if(s.x<0)s.x=c.width;if(s.x>c.width)s.x=0;const al=Math.abs(Math.sin(s.a*Math.PI));ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,Math.PI*2);ctx.fillStyle=`rgba(255,224,101,${al*.5})`;ctx.fill();}); requestAnimationFrame(draw); }
+        rsz(); mk(); draw(); window.addEventListener('resize',()=>{rsz();mk();});
+    })();
+
+    // ===== NAV & TRANSITIONS =====
+    window.addEventListener('scroll', () => document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 50));
+    const hb = document.getElementById('hamburger'), mm = document.getElementById('mobileMenu');
+    if (hb) hb.addEventListener('click', () => { hb.classList.toggle('active'); mm.classList.toggle('open'); });
+    window.addEventListener('load', () => document.body.classList.add('loaded'));
+    if (document.readyState === 'complete') document.body.classList.add('loaded');
+    document.addEventListener('click', e => {
+        const link = e.target.closest('a');
+        if (!link) return;
+        const href = link.getAttribute('href');
+        if (!href || href.startsWith('#') || href.startsWith('http') || link.getAttribute('target') === '_blank') return;
+        e.preventDefault(); document.body.classList.add('fading-out'); setTimeout(() => window.location.href = href, 400);
+    });
+    window.addEventListener('pageshow', e => { if (e.persisted) { document.body.classList.remove('fading-out'); document.body.classList.add('loaded'); } });
+    </script>
+</body>
+</html>
