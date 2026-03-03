@@ -83,11 +83,37 @@
     /* Photo path info */
     .photo-path { font-size: 0.68rem; color: rgba(149,206,255,0.5); font-family: 'Courier New', monospace; margin-top: 6px; }
 
+
+    /* ===== MOBILE FIXES ===== */
     @media (max-width: 768px) {
-        .pillars-grid { grid-template-columns: 1fr; max-width: 320px; }
-        .bph-row { grid-template-columns: 1fr; max-width: 280px; }
+        /* Hero */
+        .team-hero { padding: 110px 0 60px; }
+        .team-hero-sub { font-size: 0.9rem; padding: 0 8px; }
+        /* Pillars: stack but centered */
+        .pillars-grid { grid-template-columns: 1fr; max-width: 300px; margin: 0 auto; gap: 20px; }
+        /* Connector lines hide on mobile (they rely on horizontal layout) */
+        .org-connector-h { display: none; }
+        /* BPH row: 2-col */
+        .bph-row { grid-template-columns: 1fr 1fr; max-width: 100%; gap: 14px; }
+        .bph-row.single { grid-template-columns: 1fr; max-width: 240px; }
+        /* Divisions: single col */
         .divisions-grid { grid-template-columns: 1fr; }
+        /* Sections spacing */
+        .pillars-section, .bph-section { padding: 60px 0; }
+        .divisions-section { padding: 0 0 60px; }
+        .container { padding: 0 16px; }
+        /* Person cards smaller */
+        .person-card { padding: 18px 14px; }
+        .person-photo { width: 64px; height: 64px; }
+        .person-name { font-size: 0.85rem; }
     }
+    @media (max-width: 480px) {
+        .bph-row { grid-template-columns: 1fr 1fr; gap: 10px; }
+        .pillar-photo-wrap, .pillar-photo { width: 80px; height: 80px; }
+        .pillar-name { font-size: 0.95rem; }
+        .section-title { font-size: 1.8rem; }
+    }
+
     </style>
 </head>
 <body>
