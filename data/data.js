@@ -1,6 +1,7 @@
 const dataAngkatan = [
-    { nama: "ADINDA WAHYUNI", kelas: "XIII AKL 1" },
-    { nama: "ALISHA PUTERI NUR SYABANI", kelas: "XIII AKL 1" },
+    // ── XII AKL 1 ──
+    { nama: "ADINDA WAHYUNI", kelas: "XII AKL 1" },
+    { nama: "ALISHA PUTERI NUR SYABANI", kelas: "XII AKL 1" },
     { nama: "AMELIA MEILIANI PUTRI", kelas: "XII AKL 1" },
     { nama: "ANDINI APRILIANI", kelas: "XII AKL 1" },
     { nama: "AURA SHIPA NUR RIZKY", kelas: "XII AKL 1" },
@@ -33,6 +34,8 @@ const dataAngkatan = [
     { nama: "VINA SAFIRA", kelas: "XII AKL 1" },
     { nama: "YOHANA PRICILIA LUMBANTORUAN", kelas: "XII AKL 1" },
     { nama: "ZAHRA TUSITA NUR HIDAYAT", kelas: "XII AKL 1" },
+    { nama: "MELYZA FUZI LESTARI", kelas: "XII AKL 1" },
+    // ── XII AKL 2 ──
     { nama: "ALFIRA AUZRELIA", kelas: "XII AKL 2" },
     { nama: "ALMA ALBIYANI", kelas: "XII AKL 2" },
     { nama: "AMELIA PUTRI ANDIANA", kelas: "XII AKL 2" },
@@ -70,6 +73,7 @@ const dataAngkatan = [
     { nama: "WIANDA APRILIA", kelas: "XII AKL 2" },
     { nama: "YUNISA DEWI FATONAH", kelas: "XII AKL 2" },
     { nama: "ZAHRAN KHAERUL AJIZI", kelas: "XII AKL 2" },
+    // ── XII AKL 3 ──
     { nama: "ALICA IHZA SAUMI", kelas: "XII AKL 3" },
     { nama: "ALYA DESTIANTI", kelas: "XII AKL 3" },
     { nama: "ANANDYANA RAHMAH NUGRAHA", kelas: "XII AKL 3" },
@@ -104,6 +108,7 @@ const dataAngkatan = [
     { nama: "WULAN APRIYANI", kelas: "XII AKL 3" },
     { nama: "ZAHRA SASKIA OKTAVIANI", kelas: "XII AKL 3" },
     { nama: "ZALFFA SHABIHAH TUFFAHATI", kelas: "XII AKL 3" },
+    // ── XII DKV 1 ──
     { nama: "ABHIPRAYA PRATAMA RAHARJA", kelas: "XII DKV 1" },
     { nama: "AHMAD MAGALI FIRMANSAH", kelas: "XII DKV 1" },
     { nama: "AMALINDA ALIFIA PUTRI", kelas: "XII DKV 1" },
@@ -140,6 +145,7 @@ const dataAngkatan = [
     { nama: "VIDIA KARRILA", kelas: "XII DKV 1" },
     { nama: "YULIANTI RAHAYU PUTRI", kelas: "XII DKV 1" },
     { nama: "ZAKY SALMAN ALFARIZIE", kelas: "XII DKV 1" },
+    // ── XII DKV 2 ──
     { nama: "ADIT AGUSTIAN RAFI", kelas: "XII DKV 2" },
     { nama: "AJENG MEGA RAHMAWATI", kelas: "XII DKV 2" },
     { nama: "AMELIA MARDIANA", kelas: "XII DKV 2" },
@@ -163,7 +169,7 @@ const dataAngkatan = [
     { nama: "NAFISA SALWA", kelas: "XII DKV 2" },
     { nama: "NAZHIF HARUN MANANDAR", kelas: "XII DKV 2" },
     { nama: "NISRINA SALSABILA", kelas: "XII DKV 2" },
-    { nama: "PIXIIEL NAUFAL AINURZAIN", kelas: "XII DKV 2" },
+    { nama: "PIXIEL NAUFAL AINURZAIN", kelas: "XII DKV 2" },
     { nama: "PUTRI ADDISA RAMADHANI", kelas: "XII DKV 2" },
     { nama: "RAISA PURNAMA", kelas: "XII DKV 2" },
     { nama: "RAYYAN AURIEL THALITA UNGGARA", kelas: "XII DKV 2" },
@@ -176,6 +182,7 @@ const dataAngkatan = [
     { nama: "WANDA WIJAYANA", kelas: "XII DKV 2" },
     { nama: "YUSUF AKBAR FAHREZI", kelas: "XII DKV 2" },
     { nama: "ZHIA NUR ULHAQ", kelas: "XII DKV 2" },
+    // ── XII DKV 3 ──
     { nama: "AHMAD FAUZI PADILAH", kelas: "XII DKV 3" },
     { nama: "ALIFIA AZAHRA", kelas: "XII DKV 3" },
     { nama: "ASEP ELAN", kelas: "XII DKV 3" },
@@ -211,6 +218,7 @@ const dataAngkatan = [
     { nama: "SYAKIRA PUTRI PRESTIANI", kelas: "XII DKV 3" },
     { nama: "YASREL DINIA NOPIYANTI", kelas: "XII DKV 3" },
     { nama: "ZAKIA AURA SYAHRANI", kelas: "XII DKV 3" },
+    // ── XII MPL 1 ──
     { nama: "ADELIA AZ-ZAHRA", kelas: "XII MPL 1" },
     { nama: "ALISA PUTRI KHAYLA", kelas: "XII MPL 1" },
     { nama: "ALYA ZEINARA MAHARANI", kelas: "XII MPL 1" },
@@ -245,6 +253,7 @@ const dataAngkatan = [
     { nama: "TIARA NURKAILA", kelas: "XII MPL 1" },
     { nama: "YUNITA ABABIL", kelas: "XII MPL 1" },
     { nama: "ZALFA NAURA ASNAZ", kelas: "XII MPL 1" },
+    // ── XII MPL 2 ──
     { nama: "ADLA PUTRI ARISTA RAMDANI", kelas: "XII MPL 2" },
     { nama: "ALMA FEBRIANTI", kelas: "XII MPL 2" },
     { nama: "AMEL RATNA AULIA", kelas: "XII MPL 2" },
@@ -280,6 +289,7 @@ const dataAngkatan = [
     { nama: "SYURAYA ZAHIRA", kelas: "XII MPL 2" },
     { nama: "WAFA MAULIDA", kelas: "XII MPL 2" },
     { nama: "ZAHRA NURFATHI FAUZIAH", kelas: "XII MPL 2" },
+    // ── XII MPL 3 ──
     { nama: "ALFIRA PARHATUN NISSA", kelas: "XII MPL 3" },
     { nama: "ALYA AFIPA AULINA N D", kelas: "XII MPL 3" },
     { nama: "AMELINDA NUR AZIZAH", kelas: "XII MPL 3" },
@@ -315,6 +325,8 @@ const dataAngkatan = [
     { nama: "WIKE WIDIASTUTI", kelas: "XII MPL 3" },
     { nama: "ZAHRA RAMADANI", kelas: "XII MPL 3" },
     { nama: "FIONI GADIS SELISA", kelas: "XII MPL 3" },
+    { nama: "MEISYA INSANI AULIA", kelas: "XII MPL 3" },
+    // ── XII PM 1 ──
     { nama: "ALIYA MAULIDA", kelas: "XII PM 1" },
     { nama: "ALNA DEWI ANDRIANI", kelas: "XII PM 1" },
     { nama: "ASTI ANNISATU ZAHRA", kelas: "XII PM 1" },
@@ -351,6 +363,7 @@ const dataAngkatan = [
     { nama: "WINDYA PUTRIE VANIA", kelas: "XII PM 1" },
     { nama: "YOLA FITRI INDRIYANI", kelas: "XII PM 1" },
     { nama: "ZAHRA NURUL ALFAH", kelas: "XII PM 1" },
+    // ── XII PM 2 ──
     { nama: "ALMA", kelas: "XII PM 2" },
     { nama: "ALYA ARYASA", kelas: "XII PM 2" },
     { nama: "AULIA SABILA", kelas: "XII PM 2" },
@@ -381,6 +394,10 @@ const dataAngkatan = [
     { nama: "WINI JUNITA SITI SOLEHA", kelas: "XII PM 2" },
     { nama: "ZAAHIRAH G. PERTIWI", kelas: "XII PM 2" },
     { nama: "ZAHRA SALSABILA GUNAWAN", kelas: "XII PM 2" },
+    { nama: "MUTIARA RIZQITA ARLIN", kelas: "XII PM 2" },
+    { nama: "MILA AULIAH", kelas: "XII PM 2" },
+    { nama: "SILVA AULIA S", kelas: "XII PM 2" },
+    // ── XII PPL 1 ──
     { nama: "ABDE KRISNA ALI", kelas: "XII PPL 1" },
     { nama: "AGNIA SAKILA ZAHRA", kelas: "XII PPL 1" },
     { nama: "AL FANDRIS", kelas: "XII PPL 1" },
@@ -415,6 +432,7 @@ const dataAngkatan = [
     { nama: "SALMA RAMADANI", kelas: "XII PPL 1" },
     { nama: "VALLENT CHARMBUMI PUTRA MAHENDRA", kelas: "XII PPL 1" },
     { nama: "YUSUP PERMANA WIBAWA", kelas: "XII PPL 1" },
+    // ── XII PPL 2 ──
     { nama: "ABDULLOH FAQIH", kelas: "XII PPL 2" },
     { nama: "AGUNG PAJAR PANGESTU RUSYANTO", kelas: "XII PPL 2" },
     { nama: "ALFARIZI SAYYID HUSAIN", kelas: "XII PPL 2" },
@@ -449,6 +467,7 @@ const dataAngkatan = [
     { nama: "TSABITAH DHIMAS JULIANT", kelas: "XII PPL 2" },
     { nama: "WULAN RACHMAWATI", kelas: "XII PPL 2" },
     { nama: "YUZAKI AL FARISHI", kelas: "XII PPL 2" },
+    // ── XII TET 1 ──
     { nama: "AREA NAFILA AINI PUTERI", kelas: "XII TET 1" },
     { nama: "BAGAS YUSTIAN", kelas: "XII TET 1" },
     { nama: "DIMAS MUCHTAR RAMDANI", kelas: "XII TET 1" },
@@ -460,6 +479,7 @@ const dataAngkatan = [
     { nama: "INTAN NURDIANA", kelas: "XII TET 1" },
     { nama: "JIHAN SITI FATIMAH", kelas: "XII TET 1" },
     { nama: "LUKMAN ABDUL HAKIM", kelas: "XII TET 1" },
+    { nama: "M. HUSNAENI", kelas: "XII TET 1" },
     { nama: "M. YUSUF APRILIANSYAH", kelas: "XII TET 1" },
     { nama: "MOHAMMAD GHAZI ASHSHALIH", kelas: "XII TET 1" },
     { nama: "MUHAMAD JUAN RAFI", kelas: "XII TET 1" },
@@ -473,7 +493,7 @@ const dataAngkatan = [
     { nama: "RANI RAMADHANI", kelas: "XII TET 1" },
     { nama: "RASTI NURSYIPA", kelas: "XII TET 1" },
     { nama: "RATU ALZENA NUR FATHONY", kelas: "XII TET 1" },
-    { nama: "REFAN DELVIA PRATAMA", kelas: "XII TET 1" },
+    { nama: "REFAN Delvia Pratama", kelas: "XII TET 1" },
     { nama: "REGA NUGRAHA PRATAMA", kelas: "XII TET 1" },
     { nama: "REIKI ABDIKA M KOSWARA", kelas: "XII TET 1" },
     { nama: "SALWA NURUL MUTIARA", kelas: "XII TET 1" },
@@ -481,10 +501,12 @@ const dataAngkatan = [
     { nama: "TEGUH RAHMAT AL FAUZI", kelas: "XII TET 1" },
     { nama: "TIAS RAHMAT MAULUD", kelas: "XII TET 1" },
     { nama: "ZIDNI RIZKY FERISQO", kelas: "XII TET 1" },
+    { nama: "NENDEN CELIA PUTRI", kelas: "XII TET 1" },
+    // ── XII TJK 1 ──
     { nama: "ADHIA ALDIMMA", kelas: "XII TJK 1" },
     { nama: "AHMAD KHOTIB SUPRIADI", kelas: "XII TJK 1" },
     { nama: "AKMAL NUR FATHA", kelas: "XII TJK 1" },
-    { nama: "ALEXIIANDER RICO", kelas: "XII TJK 1" },
+    { nama: "ALEXIANDER RICO", kelas: "XII TJK 1" },
     { nama: "ANDHIKA AHMAD ZAILANI", kelas: "XII TJK 1" },
     { nama: "BUNGA FALIZAVIE HASNA AUFA", kelas: "XII TJK 1" },
     { nama: "FAHRIYATUL AHYAR", kelas: "XII TJK 1" },
@@ -518,6 +540,7 @@ const dataAngkatan = [
     { nama: "RIFKI FAUZAN", kelas: "XII TJK 1" },
     { nama: "SHERIN HERIYANI PUTRI", kelas: "XII TJK 1" },
     { nama: "SHILLA AZZAHRA AULIANDA", kelas: "XII TJK 1" },
+    // ── XII TJK 2 ──
     { nama: "ADNIN HERA SALSABIL", kelas: "XII TJK 2" },
     { nama: "ANANDA MAULID", kelas: "XII TJK 2" },
     { nama: "ANDIKA AHMAD SATRIA", kelas: "XII TJK 2" },
@@ -552,6 +575,7 @@ const dataAngkatan = [
     { nama: "SIFA ANDRAI", kelas: "XII TJK 2" },
     { nama: "TERY", kelas: "XII TJK 2" },
     { nama: "WIPA FEBRIANTI RAFILA", kelas: "XII TJK 2" },
+    // ── XII TJK 3 ──
     { nama: "AGNAN RAHMANSYAH", kelas: "XII TJK 3" },
     { nama: "ANGGI SUPRIADI", kelas: "XII TJK 3" },
     { nama: "ARDY ROCHSAN WINATA", kelas: "XII TJK 3" },
@@ -586,6 +610,7 @@ const dataAngkatan = [
     { nama: "SERINA YUSUP", kelas: "XII TJK 3" },
     { nama: "TAMA NUGRAHA", kelas: "XII TJK 3" },
     { nama: "TERY RAMADAN", kelas: "XII TJK 3" },
+    // ── XII TKF 1 ──
     { nama: "ABHIDA NAKAILA", kelas: "XII TKF 1" },
     { nama: "AGNIA PUTRI QIRANI", kelas: "XII TKF 1" },
     { nama: "AISYAH  SUCIAWATI", kelas: "XII TKF 1" },
@@ -622,6 +647,7 @@ const dataAngkatan = [
     { nama: "TIARA NUR ALIFA", kelas: "XII TKF 1" },
     { nama: "ULA RAMADANI", kelas: "XII TKF 1" },
     { nama: "ZAHROTUSSHIFA JANUAR", kelas: "XII TKF 1" },
+    // ── XII TKF 2 ──
     { nama: "AGHINA DEFIRA ASYAMI PUTRI", kelas: "XII TKF 2" },
     { nama: "ALYA SALASWATI", kelas: "XII TKF 2" },
     { nama: "ANGGIT SAGITA CAHYA NUGRAHA", kelas: "XII TKF 2" },
@@ -657,6 +683,9 @@ const dataAngkatan = [
     { nama: "VIOLA UTARI DELIANA", kelas: "XII TKF 2" },
     { nama: "WIDYA RAHMA SABILA", kelas: "XII TKF 2" },
     { nama: "ZAKY FAHREZY", kelas: "XII TKF 2" },
+    { nama: "HANIF AL HUSAINI", kelas: "XII TKF 2" },
+    { nama: "REVA NUR AZZURA AFIYANTI", kelas: "XII TKF 2" },
+    // ── XII TKF 3 ──
     { nama: "AGNI PUTRI LESTARI", kelas: "XII TKF 3" },
     { nama: "AJENG RAHAYU", kelas: "XII TKF 3" },
     { nama: "AMELIA LESTARI", kelas: "XII TKF 3" },
@@ -693,6 +722,8 @@ const dataAngkatan = [
     { nama: "WIDIA PATMAH", kelas: "XII TKF 3" },
     { nama: "ZAHRA A'ROFATUN NISA", kelas: "XII TKF 3" },
     { nama: "ZAVIRA LAILATUL FAZRI", kelas: "XII TKF 3" },
+    { nama: "JULIANI HARUM SAPUTRI", kelas: "XII TKF 3" },
+    // ── XII TLG 1 ──
     { nama: "ABDUL AZIZ AL-MUNAWAR", kelas: "XII TLG 1" },
     { nama: "ALGHIFARI ARAFAH REIZA", kelas: "XII TLG 1" },
     { nama: "ANDRA PRATAMA ADE RISKI SOPANDI", kelas: "XII TLG 1" },
@@ -714,6 +745,7 @@ const dataAngkatan = [
     { nama: "MEYDINA ISNA DEWI", kelas: "XII TLG 1" },
     { nama: "MOHAMAD IKBAL TIRDIAWAN", kelas: "XII TLG 1" },
     { nama: "MUHAMMAD DANANG WAHYUDHA", kelas: "XII TLG 1" },
+    { nama: "MUHAMMAD NABBIL RASIDIN", kelas: "XII TLG 1" },
     { nama: "NADIA NARESWARI PUTRI", kelas: "XII TLG 1" },
     { nama: "NAURA RAHMA MAULIA", kelas: "XII TLG 1" },
     { nama: "NENG MONA HARYANTO", kelas: "XII TLG 1" },
@@ -729,6 +761,7 @@ const dataAngkatan = [
     { nama: "WIDIAWATI TRI MULYANI", kelas: "XII TLG 1" },
     { nama: "WINSYA NURBIYAH", kelas: "XII TLG 1" },
     { nama: "ZULFA NUR ZASKIA", kelas: "XII TLG 1" },
+    // ── XII TLG 2 ──
     { nama: "FAREL ADITHYA NAIBAHO", kelas: "XII TLG 2" },
     { nama: "ADE KIRANA", kelas: "XII TLG 2" },
     { nama: "AMANDA AMANULLAH", kelas: "XII TLG 2" },
@@ -764,6 +797,7 @@ const dataAngkatan = [
     { nama: "TIA SAPTIRA", kelas: "XII TLG 2" },
     { nama: "WINDI PUTRI NURAINI", kelas: "XII TLG 2" },
     { nama: "ZAHRA ZAKIAH", kelas: "XII TLG 2" },
+    // ── XII TLM 1 ──
     { nama: "AGNI ZASKIA PUTRI", kelas: "XII TLM 1" },
     { nama: "ARIMBI TAOPIK PUTRI", kelas: "XII TLM 1" },
     { nama: "DINDA ANGGRAENI", kelas: "XII TLM 1" },
@@ -800,6 +834,7 @@ const dataAngkatan = [
     { nama: "SITI ZAKIAH RAMADANI", kelas: "XII TLM 1" },
     { nama: "ZAHRA AURA SHEPTIYANI", kelas: "XII TLM 1" },
     { nama: "ZAIDAN NASHOFA ABDUL FATAH", kelas: "XII TLM 1" },
+    // ── XII TLM 2 ──
     { nama: "ALMA AMELIA", kelas: "XII TLM 2" },
     { nama: "ALMIRA ZHAHROTUL SHITA SAEFUDIN", kelas: "XII TLM 2" },
     { nama: "AULIA PUTRI NUR APRILIANI", kelas: "XII TLM 2" },
@@ -807,7 +842,7 @@ const dataAngkatan = [
     { nama: "DENA SYAFITRI", kelas: "XII TLM 2" },
     { nama: "DEVI LESTARI", kelas: "XII TLM 2" },
     { nama: "DIVA AURELIA PUTRI", kelas: "XII TLM 2" },
-    { nama: "DIXIISYI SAFANAH", kelas: "XII TLM 2" },
+    { nama: "DIXISYI SAFANAH", kelas: "XII TLM 2" },
     { nama: "FATMI MUTMANITI", kelas: "XII TLM 2" },
     { nama: "FAYZA KEISYA NABILA", kelas: "XII TLM 2" },
     { nama: "HILYA RAMADANI", kelas: "XII TLM 2" },
@@ -838,12 +873,4 @@ const dataAngkatan = [
     { nama: "YESI ARYA MARTINI", kelas: "XII TLM 2" },
     { nama: "YURI RIZKILAH", kelas: "XII TLM 2" },
     { nama: "ZAHRA LAURA ANJANI", kelas: "XII TLM 2" },
-    { nama: "MEISYA INSANI AULIA", kelas: "XII MPL 3" },
-    { nama: "MUTIARA RIZQITA ARLIN", kelas: "XII PM 2" },
-    { nama: "MILA AULIAH", kelas: "XII PM 2" },
-    { nama: "SILVA AULIA S", kelas: "XII PM 2" },
-    { nama: "NENDEN CELIA PUTRI", kelas: "XII TET 1" },
-    { nama: "MELYZA FUZI LESTARI", kelas: "XII AKL 1" },
-    { nama: "HANIF AL HUSAINI", kelas: "XII TKF 2" },
-    { nama: "REVA NUR AZZURA AFIYANTI", kelas: "XII TKF 2" },
 ];
