@@ -83,37 +83,47 @@
     /* Photo path info */
     .photo-path { font-size: 0.68rem; color: rgba(149,206,255,0.5); font-family: 'Courier New', monospace; margin-top: 6px; }
 
-
-    /* ===== MOBILE FIXES ===== */
     @media (max-width: 768px) {
-        /* Hero */
-        .team-hero { padding: 110px 0 60px; }
-        .team-hero-sub { font-size: 0.9rem; padding: 0 8px; }
-        /* Pillars: stack but centered */
-        .pillars-grid { grid-template-columns: 1fr; max-width: 300px; margin: 0 auto; gap: 20px; }
-        /* Connector lines hide on mobile (they rely on horizontal layout) */
-        .org-connector-h { display: none; }
-        /* BPH row: 2-col */
+        .pillars-grid { grid-template-columns: 1fr; max-width: 320px; margin:0 auto; }
+        .pillar-center { transform: scale(1) !important; }
         .bph-row { grid-template-columns: 1fr 1fr; max-width: 100%; gap: 14px; }
         .bph-row.single { grid-template-columns: 1fr; max-width: 240px; }
-        /* Divisions: single col */
         .divisions-grid { grid-template-columns: 1fr; }
-        /* Sections spacing */
-        .pillars-section, .bph-section { padding: 60px 0; }
-        .divisions-section { padding: 0 0 60px; }
-        .container { padding: 0 16px; }
-        /* Person cards smaller */
-        .person-card { padding: 18px 14px; }
-        .person-photo { width: 64px; height: 64px; }
-        .person-name { font-size: 0.85rem; }
     }
     @media (max-width: 480px) {
-        .bph-row { grid-template-columns: 1fr 1fr; gap: 10px; }
         .pillar-photo-wrap, .pillar-photo { width: 80px; height: 80px; }
-        .pillar-name { font-size: 0.95rem; }
         .section-title { font-size: 1.8rem; }
     }
 
+    /* ===== TEAM MEMBER MODAL ===== */
+    .team-modal { position:fixed; inset:0; z-index:9999; display:flex; align-items:center; justify-content:center; opacity:0; visibility:hidden; transition:opacity 0.3s, visibility 0.3s; }
+    .team-modal.open { opacity:1; visibility:visible; }
+    .team-modal-backdrop { position:absolute; inset:0; background:rgba(5,10,20,0.92); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); cursor:pointer; }
+    .team-modal-box { position:relative; z-index:2; width:90vw; max-width:480px; background:linear-gradient(135deg, rgba(15,31,53,0.98), rgba(8,14,26,0.99)); border:1px solid rgba(149,206,255,0.15); border-radius:28px; padding:36px 32px; animation: modalSlideUp 0.35s cubic-bezier(0.25,0.46,0.45,0.94); }
+    @keyframes modalSlideUp { from { transform:translateY(20px); opacity:0; } to { transform:translateY(0); opacity:1; } }
+    .team-modal-close { position:absolute; top:16px; right:16px; width:36px; height:36px; border-radius:50%; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); color:rgba(255,255,255,0.6); font-size:1rem; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:background 0.2s, color 0.2s; line-height:1; }
+    .team-modal-close:hover { background:rgba(255,255,255,0.12); color:#fff; }
+    .team-modal-top { display:flex; align-items:center; gap:24px; margin-bottom:24px; }
+    .team-modal-photo { width:96px; height:96px; border-radius:50%; background:linear-gradient(135deg, rgba(21,63,124,0.5), rgba(8,14,26,0.8)); border:2px solid rgba(255,224,101,0.3); display:flex; align-items:center; justify-content:center; overflow:hidden; flex-shrink:0; }
+    .team-modal-photo img { width:100%; height:100%; object-fit:cover; }
+    .team-modal-role { font-family:'Cinzel',serif; font-size:0.6rem; letter-spacing:0.2em; color:var(--gold); margin-bottom:6px; opacity:0.85; }
+    .team-modal-name { font-family:'Cinzel',serif; font-size:1.3rem; font-weight:700; color:#E8F4FF; line-height:1.2; margin-bottom:6px; }
+    .team-modal-kelas { font-size:0.82rem; color:rgba(232,244,255,0.55); }
+    .team-modal-divider { height:1px; background:linear-gradient(to right, transparent, rgba(149,206,255,0.2), transparent); margin:20px 0; }
+    .team-modal-socmed { display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+    .team-modal-socmed-label { font-size:0.75rem; color:rgba(232,244,255,0.4); font-family:'Cinzel',serif; letter-spacing:0.1em; }
+    .tm-socmed-btn { display:flex; align-items:center; gap:6px; padding:8px 14px; border-radius:10px; border:1px solid rgba(255,224,101,0.2); background:rgba(255,224,101,0.06); color:rgba(255,224,101,0.8); font-size:0.75rem; text-decoration:none; transition:all 0.2s; cursor:pointer; }
+    .tm-socmed-btn:hover { background:rgba(255,224,101,0.14); border-color:rgba(255,224,101,0.4); color:#FFE065; }
+    .team-modal-footer { margin-top:20px; font-family:'Cinzel',serif; font-size:0.6rem; letter-spacing:0.2em; color:rgba(149,206,255,0.35); text-align:center; }
+    .member-row { cursor:pointer; border-radius:8px; transition:background 0.2s, padding-left 0.2s; }
+    .member-row:hover { background:rgba(149,206,255,0.06); padding-left:4px; }
+    .person-card { cursor:pointer; }
+    .pillar-card { cursor:pointer; }
+    @media (max-width: 480px) {
+        .team-modal-box { padding:24px 20px; }
+        .team-modal-photo { width:72px; height:72px; }
+        .team-modal-name { font-size:1.1rem; }
+    }
     </style>
 </head>
 <body>
@@ -170,22 +180,7 @@
                 <h2 class="section-title" style="margin-top:12px;">Kepemimpinan &<br><em>Bimbingan</em></h2>
             </div>
             <div class="pillars-grid">
-                <!-- Kepala Sekolah -->
-                <div class="pillar-card">
-                    <div class="pillar-photo-wrap">
-                        <div class="pillar-photo">
-                            <!-- <img src="assets/photos/team/kepsek.jpg" alt="Kepala Sekolah"> -->
-                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" style="opacity:0.5"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
-                        </div>
-                        <div class="pillar-gold-ring"></div>
-                    </div>
-                    <div class="pillar-role">KEPALA SEKOLAH</div>
-                    <div class="pillar-name">Drs. [Nama Kepsek]</div>
-                    <div class="pillar-org">SMKN 1 Garut</div>
-                    <div class="pillar-gold-line"></div>
-                    <p class="photo-path">assets/photos/team/kepsek.jpg</p>
-                </div>
-                <!-- Wakasek -->
+                <!-- Wakasek (kiri) -->
                 <div class="pillar-card">
                     <div class="pillar-photo-wrap">
                         <div class="pillar-photo">
@@ -200,19 +195,34 @@
                     <div class="pillar-gold-line"></div>
                     <p class="photo-path">assets/photos/team/wakasek.jpg</p>
                 </div>
-                <!-- Pembina -->
-                <div class="pillar-card" style="border-color:rgba(255,224,101,0.35);">
+                <!-- Kepala Sekolah (TENGAH — paling menonjol) -->
+                <div class="pillar-card pillar-center" style="border-color:rgba(255,224,101,0.45);transform:scale(1.04);box-shadow:0 24px 80px rgba(0,0,0,0.5),0 0 60px rgba(255,224,101,0.08);">
                     <div class="pillar-photo-wrap">
-                        <div class="pillar-photo" style="border-color:rgba(255,224,101,0.5);">
+                        <div class="pillar-photo" style="border-color:rgba(255,224,101,0.55);width:120px;height:120px;">
+                            <!-- <img src="assets/photos/team/kepsek.jpg" alt="Kepala Sekolah"> -->
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" style="opacity:0.5"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+                        </div>
+                        <div class="pillar-gold-ring" style="inset:-8px;border-color:rgba(255,224,101,0.35);animation-duration:6s;"></div>
+                    </div>
+                    <div class="pillar-role" style="color:var(--gold);opacity:1;">KEPALA SEKOLAH</div>
+                    <div class="pillar-name" style="font-size:1.15rem;">Drs. [Nama Kepsek]</div>
+                    <div class="pillar-org">SMKN 1 Garut</div>
+                    <div class="pillar-gold-line" style="width:60px;"></div>
+                    <p class="photo-path">assets/photos/team/kepsek.jpg</p>
+                </div>
+                <!-- Pembina (kanan) -->
+                <div class="pillar-card" style="border-color:rgba(149,206,255,0.25);">
+                    <div class="pillar-photo-wrap">
+                        <div class="pillar-photo" style="border-color:rgba(149,206,255,0.4);">
                             <!-- <img src="assets/photos/team/pembina.jpg" alt="Pembina"> -->
                             <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" style="opacity:0.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
                         </div>
-                        <div class="pillar-gold-ring" style="border-color:rgba(255,224,101,0.4);"></div>
+                        <div class="pillar-gold-ring" style="border-color:rgba(149,206,255,0.2);"></div>
                     </div>
-                    <div class="pillar-role">PEMBINA ANGKATAN 26</div>
+                    <div class="pillar-role" style="color:var(--sky);">PEMBINA ANGKATAN 26</div>
                     <div class="pillar-name">Ibu Citra Cantik</div>
                     <div class="pillar-org">Pembina Aetheris · SMKN 1 Garut</div>
-                    <div class="pillar-gold-line"></div>
+                    <div class="pillar-gold-line" style="background:linear-gradient(to right, transparent, var(--sky), transparent);"></div>
                     <p class="photo-path">assets/photos/team/pembina.jpg</p>
                 </div>
             </div>
@@ -227,7 +237,7 @@
     <section class="bph-section">
         <div class="container">
             <div style="text-align:center;margin-bottom:40px;">
-                <span class="section-label">◈ BADAN PENGURUS HARIAN (BPH)</span>
+                <span class="section-label">◈  PENGURUS INTI </span>
             </div>
             <div class="bph-inner">
                 <!-- Ketua & Wakil -->
@@ -407,6 +417,15 @@
         </div>
     </section>
 
+    <!-- TEAM MEMBER MODAL -->
+    <div class="team-modal" id="teamModal">
+        <div class="team-modal-backdrop" id="teamModalBackdrop"></div>
+        <div class="team-modal-box">
+            <button class="team-modal-close" id="teamModalClose" aria-label="Tutup">&#x2715;</button>
+            <div id="teamModalContent"></div>
+        </div>
+    </div>
+
     <!-- FOOTER -->
     <footer class="footer">
         <div class="container footer-inner">
@@ -421,6 +440,89 @@
     </footer>
 
     <script>
+    // ===== TEAM MEMBER MODAL =====
+    const teamModal = document.getElementById('teamModal');
+    const teamModalContent = document.getElementById('teamModalContent');
+
+    function openMember(data) {
+        const photoFile = data.photo || '';
+        const photoHtml = photoFile
+            ? `<img src="assets/photos/team/${photoFile}" alt="${data.nama}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">`
+            : '';
+        const initials = data.nama.split(' ').map(w => w[0]).slice(0,2).join('');
+        const accentColor = data.color || 'rgba(255,224,101,0.3)';
+
+        teamModalContent.innerHTML = `
+            <div class="team-modal-top">
+                <div class="team-modal-photo" style="border-color:${accentColor}">
+                    ${photoHtml}
+                    <div style="display:${photoFile ? 'none' : 'flex'};width:100%;height:100%;align-items:center;justify-content:center;font-family:'Cinzel',serif;font-size:1.8rem;font-weight:700;color:var(--gold);">${initials}</div>
+                </div>
+                <div>
+                    <div class="team-modal-role">${data.role || ''}</div>
+                    <div class="team-modal-name">${data.nama}</div>
+                    <div class="team-modal-kelas">${data.kelas || ''}</div>
+                </div>
+            </div>
+            <div class="team-modal-divider"></div>
+            <div class="team-modal-socmed">
+                <span class="team-modal-socmed-label">Find me:</span>
+                <a href="#" class="tm-socmed-btn" onclick="return false" title="Instagram">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                    Instagram
+                </a>
+                <a href="#" class="tm-socmed-btn" onclick="return false" title="TikTok">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>
+                    TikTok
+                </a>
+            </div>
+            <div class="team-modal-footer">AETHERIS MMXXVI · TIM PANITIA</div>
+        `;
+        teamModal.classList.add('open');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeTeamModal() {
+        teamModal.classList.remove('open');
+        document.body.style.overflow = '';
+    }
+
+    document.getElementById('teamModalClose').addEventListener('click', closeTeamModal);
+    document.getElementById('teamModalBackdrop').addEventListener('click', closeTeamModal);
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeTeamModal(); });
+
+    // Attach click to pillar cards
+    document.querySelectorAll('.pillar-card').forEach(card => {
+        const role = card.querySelector('.pillar-role')?.textContent?.trim() || '';
+        const nama = card.querySelector('.pillar-name')?.textContent?.trim() || '';
+        const kelas = card.querySelector('.pillar-org')?.textContent?.trim() || '';
+        const photoPath = card.querySelector('.photo-path')?.textContent?.trim() || '';
+        const photo = photoPath.split('/').pop();
+        const isCenter = card.classList.contains('pillar-center');
+        card.addEventListener('click', () => openMember({ nama, role, kelas, photo, color: isCenter ? 'rgba(255,224,101,0.5)' : 'rgba(149,206,255,0.3)' }));
+    });
+
+    // Attach click to person-cards (BPH)
+    document.querySelectorAll('.person-card').forEach(card => {
+        const role = card.querySelector('.person-role')?.textContent?.trim() || '';
+        const nama = card.querySelector('.person-name')?.textContent?.trim() || '';
+        const kelas = card.querySelector('.person-class')?.textContent?.trim() || '';
+        const photoPath = card.querySelector('.photo-path')?.textContent?.trim() || '';
+        const photo = photoPath.split('/').pop();
+        card.addEventListener('click', () => openMember({ nama, role, kelas, photo, color: 'rgba(255,224,101,0.3)' }));
+    });
+
+    // Attach click to member-rows (divisions)
+    document.querySelectorAll('.member-row').forEach(row => {
+        const nama = row.querySelector('.member-name')?.textContent?.trim() || '';
+        const kelas = row.querySelector('.member-class')?.textContent?.trim() || '';
+        const badge = row.querySelector('.member-role-badge')?.textContent?.trim() || '';
+        const divName = row.closest('.division-card')?.querySelector('.division-name')?.textContent?.trim() || '';
+        const role = badge ? `${badge} — ${divName}` : divName;
+        const nameSlug = nama.toLowerCase().replace(/[^a-z]/g, '-');
+        row.addEventListener('click', () => openMember({ nama, role, kelas, photo: nameSlug + '.jpg', color: 'rgba(149,206,255,0.25)' }));
+    });
+
     // ===== STARFIELD =====
     (function() {
         const c = document.getElementById('starfield');
